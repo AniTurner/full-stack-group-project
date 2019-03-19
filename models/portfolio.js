@@ -17,7 +17,6 @@ const portfolioSchema = new Schema({
     imageTitle:{
         type:String,
         required: true
-       
     },
     description:{
         type:String
