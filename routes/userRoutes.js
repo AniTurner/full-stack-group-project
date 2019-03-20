@@ -3,7 +3,7 @@ const userRouter = express.Router()
 const User = require('../models/user.js')
 
 // Create a new User
-userRouter.post("/", (req, res, next) => {
+userRouter.post("/signup", (req, res, next) => {
     const newUser = new User(req.body)
     newUser.save((err, newSavedUser) => {
         if(err){
