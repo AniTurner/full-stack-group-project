@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const AppContext = React.createContext()
 
-class BountyProvider extends Component {
+class AppProvider extends Component {
     constructor(){
         super()
         this.state = {
