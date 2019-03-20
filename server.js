@@ -1,17 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose')
-const path = require('path')
 const app = express();
-const config = require('config')
+require("dotenv").config();
+
 
 
 
 
 //Bodyparser Middleware
 app.use(express.json())
+app.use("/auth", require("./routes/auth"));
 
-//DB configuration
-const db = config.get('mongoURI')
 
 //Connect to mongo
 mongoose
@@ -20,18 +19,8 @@ mongoose
     .catch(err => console.log(err))
 
 //Use Routes
-// app.use('./items', require('./routes/items'))
-app.use('./api/users', require('./routes/users'))
 
-//serve static assets if in production
-if(process.env.NODE_ENV === 'production') {
-    //set static folder
-    app.use(express.static('client/build'))
 
-    app.get('*', (req, res) => {
-        escape.sendFile(path.resolve(_dirname, 'client', 'build', 'index.html'))
-    })
-}
 
 const PORT = process.env.PORT || 5000
 
