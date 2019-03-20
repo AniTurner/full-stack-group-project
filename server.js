@@ -9,12 +9,12 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 // Middlewares for every request
-mongoose.connect("mongodb://localhost:27017/db-relations", {useNewUrlParser: true}, () => {
+mongoose.connect("mongodb://localhost:27017/attache", {useNewUrlParser: true}, () => {
     console.log("[o] Connected to the DB")
 })
 
 // Routes
-app.use('/user', require('./routes/userRoutes.js'))
+app.use('/signup/v1', require('./routes/userRoutes.js'))
 
 
 // Error handler
