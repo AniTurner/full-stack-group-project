@@ -15,7 +15,7 @@ todoRouter.get("/", (req, res, next) => {
     });
 });
 
-todoRouter.post("/", (req, res, next) {
+todoRouter.post("/", (req, res, next) => {
     const todo = new Todo(req.body);
 
     // Set the user property of a todo to req.user._id (logged-in user's `_id` property)

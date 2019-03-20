@@ -28,7 +28,7 @@ mongoose.connect("mongodb://localhost:27017/db-relations", {useNewUrlParser: tru
 })
 
 // Routes
-app.use('/', require('./routes/userRoutes.js'))
+app.use('/', require('./routes/userRouter.js'))
 
 
 // Error handler

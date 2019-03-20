@@ -1,5 +1,4 @@
 const express = require("express")
-const User = require("../models/user");
 const authRouter = express.Router();
 const jwt = require("jsonwebtoken");
 
@@ -53,7 +52,7 @@ authRouter.post("/login", (req, res, next) => {
         // you're allowed to decode it.
         const token = jwt.sign(user.toObject(), process.env.SECRET);
 
-        // Send the token back to the client app.
+        // Sending the token back to the client app.
         return res.send({token: token, user: user.toObject(), success: true})
     });
 });
