@@ -12,6 +12,7 @@ const PortfolioItems = () => {
             
             {/* DISPLAY DIV ONLY IF PORTFOLIO ITEMS EXIST */}
             <div id="portfolio-list">
+            {/* Map over here */}
                 {PortfolioItem}            
             </div>
 
