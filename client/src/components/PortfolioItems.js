@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import PortfolioItem from './PortfolioItem.js'
 import AddEditPortfolioItemForm from './AddEditPortfolioItemForm.js'
 
