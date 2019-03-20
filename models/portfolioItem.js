@@ -12,7 +12,7 @@ const portfolioItemSchema = new Schema({
     },
     title:{
         type: String,
-        required:true
+        required: true
     },
     imgUrl:{
         type:String,
