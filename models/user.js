@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     username:{
         type:String,
-        required:true
+        required:true,
+        lowercase: true
     },
     
     firstName:{
@@ -30,17 +31,17 @@ const userSchema = new Schema({
 
     phone:{
         type:Number
-    }
+    },
 
     // themeId:{
     //     type:String,
     //     required: true
     // },
 
-    // password:{
-    //     type:String,
-    //     required: true
-    // }
+    password:{
+        type:String,
+        required: true
+    }
 })
 
 

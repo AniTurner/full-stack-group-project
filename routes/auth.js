@@ -1,12 +1,13 @@
 const express = require("express")
 const authRouter = express.Router();
 const jwt = require("jsonwebtoken");
+const User = require('../models/user.js')
 
 //post a new user to user collection (signing up)
 authRouter.post("/signup", (req, res, next) => {
     // try to find a user with the provided username. (If it already exists, we want to tell them
     // that the username is already taken.)
-    User.findOne({username: req.body.username}, (err, existingUser) => {
+    User.findOne({username: req.body.username.toLowerCase()}, (err, existingUser) => {
         if (err) {
             res.status(500);
             return next(err);
