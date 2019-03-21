@@ -51,7 +51,7 @@ class AppProvider extends Component {
 
     handleSubmit = e => {
         e.preventDefault() 
-        this.props.signup(this.state).then(() => this.props.history.push("/todos"))
+        this.props.signup(this.state).then(() => this.props.history.push("/categories"))
         this.props.login(this.state).then(() => this.props.history.push('/categories'))
     }
 
