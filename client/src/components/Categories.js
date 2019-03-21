@@ -8,14 +8,14 @@ const Categories = () => {
         
             <div>
                 <h2>Add a new Category</h2>
-                {AddCategoryForm}            
+                <AddCategoryForm />           
             </div>
 
             
             {/* DISPLAY BELOW ONLY IF CATEGORIES EXIST */}
             <div>
                 <h2>Delete a Category</h2>
-                {DeleteCategoryForm}            
+                <DeleteCategoryForm />           
             </div>
 
         </div>

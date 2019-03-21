@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
+import { withListData } from './context/BigDataProvider.js'
+
+import './styles.css'
 
 import MenuAdmin from './components/MenuAdmin.js'
 import MenuPortfolio from './components/MenuPortfolio.js'
@@ -15,6 +18,14 @@ import UserCategory from './components/UserCategory.js'
 import UserContact from './components/UserContact.js'
 
 class App extends Component {
+    // eslint-disable-next-line
+    constructor(props){
+        super(props)
+    }
+
+    componentDidMount = () => {
+        this.props.getUsers()
+    }
 
     render() {
         return (
@@ -22,7 +33,7 @@ class App extends Component {
                 <div id="container">
                     <header>
                         {/* display only if logged in */}
-                        <MenuAdmin />
+                        {(this.props.isLoggedIn === true) ? <MenuAdmin /> : ``}
                         {/* display when (NOT logged in) || (when logged in AND previewMode===true) */}
                         <MenuPortfolio />
                     </header>
@@ -53,4 +64,4 @@ class App extends Component {
     }
 }
 
-export default App
+export default withRouter(withListData(App))
