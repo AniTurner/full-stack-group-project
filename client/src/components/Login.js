@@ -9,12 +9,12 @@ const Login = () => {
         <div id="login-screen">
             {/* DISPLAY DIV ONLY IF USERS EXIST */}
             <div>
-                {SelectUserForm}        
+                <SelectUserForm />     
             </div>
 
             {/* ALWAYS DISPLAY */}
             <div>
-                {AddUserLoginForm}
+                <AddUserLoginForm />
             </div>
         </div>
     )

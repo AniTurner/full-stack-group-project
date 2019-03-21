@@ -8,12 +8,12 @@ class MenuAdmin extends Component {
         const { currentUserId, toggleLogin } = this.props
 
         return (
-            <div role="navigation" className="admin-nav">
-                <li id="logo"><Link to="/admin">Attaché Admin:</Link></li>
+            <div role="navigation" id="admin-nav">
+                <li id="logo"><Link to="/admin" className="title">Attaché Admin:</Link></li>
                 <li className="tab"><Link to={`/${currentUserId}/categories`}><div></div>Categories</Link></li>
                 <li className="tab"><Link to={`/${currentUserId}/portfolio`}><div></div>Portfolio</Link></li>
                 <li className="tab"><Link to={`/${currentUserId}/userinfo`}><div></div>User Info</Link></li>
-                <li className="tab"><Link to={"/"} onClick={() => toggleLogin}><div></div>Log Out</Link></li>
+                <li className="tab"><Link to={"/"} onClick={toggleLogin}><div></div>Log Out</Link></li>
             </div>
         )
     }

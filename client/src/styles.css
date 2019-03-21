@@ -1,0 +1,79 @@
+* {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+/* 
+    HEADER ELEMENTS 
+*/
+header {
+    display: grid;
+    width: 100vw;
+    align-items: start;
+    
+}
+/* 
+    MENU / NAV ELEMENTS
+*/
+#admin-nav, #portfolio-nav {
+    display: flex;
+    position: relative;
+    background-color: black;
+    min-height: 40pt;
+    list-style: none;
+    flex-direction: row;
+    font-size: 12pt;
+    justify-content: start;
+    transition: all 0.3s ease;
+}
+
+#portfolio-nav {
+    background-color: silver;
+}
+
+#admin-nav .title {
+    text-transform: uppercase;
+    color: #d71d02;
+}
+
+#admin-nav li {
+    border: 5px solid transparent;
+}
+
+#portfolio-nav li {
+    letter-spacing: 3pt;
+    border: 15px solid transparent;
+}
+
+#admin-nav li a {
+    color: whitesmoke;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+#admin-nav li a:hover {
+    transition: all 0.3s ease;
+    color: #d71d02;
+}
+
+#admin-nav li, #portfolio-nav li {
+    letter-spacing: 3pt;
+    border: 15px solid transparent;
+}
+
+#portfolio-nav li a {
+    color: black;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+#portfolio-nav li a:hover {
+    transition: all 0.3s ease;
+    color: #d71d02;
+}
