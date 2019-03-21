@@ -6,32 +6,24 @@ const userSchema = new Schema({
         type:String,
         required:true
     },
-    
     firstName:{
         type:String
     },
-
     lastName:{
         type:String
     },
-
     aboutMe:{
         type:String
     },
-
     email:{
         type:String
     },
-
     address:{
         type:String
-
     },
-
     phone:{
         type:Number
     }
-
     // themeId:{
     //     type:String,
     //     required: true
