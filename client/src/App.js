@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
+import MenuAdmin from './components/MenuAdmin.js'
+import MenuPortfolio from './components/MenuPortfolio.js'
+
 import Welcome from './components/Welcome.js'
 import Login from './components/Login.js'
 import Categories from './components/Categories.js'
@@ -12,12 +15,6 @@ import UserCategory from './components/UserCategory.js'
 import UserContact from './components/UserContact.js'
 
 class App extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-
-        }
-    }
 
     render() {
         return (
@@ -25,9 +22,9 @@ class App extends Component {
                 <div id="container">
                     <header>
                         {/* display only if logged in */}
-                        <div id="header-admin-menu">admin menu here with links</div>
+                        <MenuAdmin />
                         {/* display when (NOT logged in) || (when logged in AND previewMode===true) */}
-                        <div id="portfolio-menu">portfolio menu here with links</div>
+                        <MenuPortfolio />
                     </header>
                     
                     <Switch>
