@@ -6,13 +6,13 @@ const PortfolioItems = () => {
     return(
         <div id="portfolio-edit-screen">
             <div>
-                {AddEditPortfolioItemForm}
+                <AddEditPortfolioItemForm />
             </div>
             
             {/* DISPLAY DIV ONLY IF PORTFOLIO ITEMS EXIST */}
             <div id="portfolio-list">
             {/* Map over here */}
-                {PortfolioItem}            
+                <PortfolioItem />           
             </div>
 
         </div>

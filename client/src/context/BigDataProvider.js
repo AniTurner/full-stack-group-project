@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { withRouter} from 'react-router-dom';
 
 const BigDataContext = React.createContext()
 
@@ -7,6 +8,7 @@ class BigDataProvider extends Component {
     constructor(props){
         super(props)
         this.state = {
+            newUser: '',
             currentUserId: "",
             currentCategoryId: "",
             currentPortfolioItems: [],
@@ -14,19 +16,52 @@ class BigDataProvider extends Component {
             allUsers: [],
             allCategories: [],
             token: "",
-            isLoggedIn: false,
+            isLoggedIn: ((localStorage.getItem('isLoggedIn')) === "true") || false,
             isPreview: false
         }
+    }
+    
+    handleChange = (event) => {
+        const { name, value } = event.target
+        this.setState({ [name]: value })
+    }
+    
+    handleLoginSubmit = (event) => {
+        event.preventDefault()
+        
+        // redirect to the users admin page
+        this.props.history.push(`/${this.state.currentUserId}/categories`)
+        // go to /{currentUserId}/category
+        
+        // submit the query to the db
+        // this.props.setSearchType("string", this.state.searchString)
+
+        // // Redirect to the Search Results component
+        // this.props.history.push(`/results/cocktails/${this.state.searchString}`)
+        
+        // Save users id to localStorage
+        localStorage.setItem('currentUserId', this.state.currentUserId)
+
     }
     
     toggleLogin = () => {
         // set theme to opposite of previous theme
         this.setState(prevState => ({
             isLoggedIn: (prevState.isLoggedIn === true) ? false : true
-        }))    
+        }))
         
         // set localStorage theme to new theme
-        localStorage.isLoggedIn = this.state.isLoggedIn
+        localStorage.setItem("isLoggedIn", !(this.state.isLoggedIn))
+    }
+    
+    togglePreview = () => {
+        // set theme to opposite of previous theme
+        this.setState(prevState => ({
+            isPreview: (prevState.isPreview === true) ? false : true
+        }))
+        
+        // set localStorage theme to new theme
+        localStorage.setItem("isPreview", !(this.state.isPreview))
     }
     
     getUsers = () => {
@@ -65,11 +100,13 @@ class BigDataProvider extends Component {
         return (
             <BigDataContext.Provider
                 value={{
-                    allUsers: this.state.users,
+                    allUsers: this.state.allUsers,
                     allCategories: this.state.allCategories,
                     currentUserId: this.state.currentUserId,
                     currentCategoryId: this.state.currentCategoryId,
                     currentPortfolioItems: this.state.currentPortfolioItems,
+                    handleChange: this.handleChange,
+                    handleLoginSubmit: this.handleLoginSubmit,
                     toggleLogin: this.toggleLogin,
                     getUsers: this.getUsers,
                     addUser: this.addUser,
@@ -86,7 +123,7 @@ class BigDataProvider extends Component {
     }
 }
 
-export default BigDataProvider
+export default withRouter(BigDataProvider)
 
 export const withListData = C => props => (
     <BigDataContext.Consumer>
