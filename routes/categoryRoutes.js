@@ -27,7 +27,7 @@ categoryRouter.get('/search', (req, res) => {
 })
 
 // CREATE NEW CATEGORY PER USER
-categoryRouter.post('/add', (req, res, next) => {
+categoryRouter.post('/', (req, res, next) => {
     const newCategory = new Category(req.body)
     newCategory.userId = req.query.userid
     newCategory.save((err, newSavedCategory) => {

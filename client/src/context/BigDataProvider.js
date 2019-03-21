@@ -10,11 +10,12 @@ class BigDataProvider extends Component {
         this.state = {
             newUser: '',
             currentUserId: "",
-            currentCategoryId: "",
+            currentCategory: {},
             currentPortfolioItems: [],
             user: {},
             allUsers: [],
             allCategories: [],
+            newCategory:'',
             token: "",
             isLoggedIn: ((localStorage.getItem('isLoggedIn')) === "true") || false,
             isPreview: false
@@ -41,7 +42,23 @@ class BigDataProvider extends Component {
         
         // Save users id to localStorage
         localStorage.setItem('currentUserId', this.state.currentUserId)
+    }
 
+    // handleChange and handleSubmit for Category
+    handleCategoryChange = event => {
+        const {name,value} = event.target
+        this.setState({ [name]: value })
+    }
+
+    handleCategorySubmit = event => {
+        event.preventDefault()
+        // console.log(event.target.value)
+        this.setState(prevState => ({
+            allCategories: [...prevState.allCategories,this.state.newCategory]
+        }))
+
+
+        console.log(this.state.newCategory)
     }
     
     toggleLogin = () => {
@@ -96,6 +113,23 @@ class BigDataProvider extends Component {
         })
     }
 
+    getCategories = () => {
+        axios.get("/category/v1").then(response => {      
+            this.setState({
+                allCategories: response.data
+            })
+        })
+    }
+
+    addCategories = newCategory => {
+        axios.post("/category/v1", newCategory).then(response => {
+            this.setState(prevState => ({
+                allUsers: [...prevState.allUsers, response.data]
+            }))
+        })
+    }
+    
+
     render(){
         return (
             <BigDataContext.Provider
@@ -103,10 +137,12 @@ class BigDataProvider extends Component {
                     allUsers: this.state.allUsers,
                     allCategories: this.state.allCategories,
                     currentUserId: this.state.currentUserId,
-                    currentCategoryId: this.state.currentCategoryId,
+                    currentCategory: this.state.currentCategory,
                     currentPortfolioItems: this.state.currentPortfolioItems,
                     handleChange: this.handleChange,
                     handleLoginSubmit: this.handleLoginSubmit,
+                    handleCategoryChange: this.handleCategoryChange,
+                    handleCategorySubmit: this.handleCategorySubmit,
                     toggleLogin: this.toggleLogin,
                     getUsers: this.getUsers,
                     addUser: this.addUser,
