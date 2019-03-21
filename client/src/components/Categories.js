@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import AddCategoryForm from './AddCategoryForm.js'
 import DeleteCategoryForm from './DeleteCategoryForm.js'
 
