@@ -25,7 +25,6 @@ app.use('/user/v1', require('./routes/userRoutes.js'))
 app.use('/category/v1', require('./routes/categoryRoutes.js'))
 app.use('/portfolio/v1', require('./routes/portfolioRoutes.js'))
 
-
 // Error handler
 app.use((err, req, res, next) => {
     console.error(err);
