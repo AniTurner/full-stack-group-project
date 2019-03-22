@@ -38,9 +38,9 @@ categoryRouter.get('/bycatid/:_id', (req, res) => {
 })
 
 // CREATE NEW CATEGORY PER USER
-categoryRouter.post('/', (req, res, next) => {
+categoryRouter.post('/:userId', (req, res, next) => {
     const newCategory = new Category(req.body)
-    newCategory.userId = req.query.userid
+    newCategory.userId = req.params.userId
     newCategory.save((err, newSavedCategory) => {
         if(err){
             res.status(500)

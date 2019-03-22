@@ -52,11 +52,11 @@ class BigDataProvider extends Component {
 
     handleCategorySubmit = event => {
         event.preventDefault()
+        this.addCategories();
         // console.log(event.target.value)
-        this.setState(prevState => ({
-            allCategories: [...prevState.allCategories,this.state.newCategory]
-        }))
-
+        // this.setState(prevState => ({
+        //     allCategories: [...prevState.allCategories,this.state.newCategory]
+        // }))
 
         console.log(this.state.newCategory)
     }
@@ -121,14 +121,21 @@ class BigDataProvider extends Component {
         })
     }
 
-    addCategories = newCategory => {
-        axios.post("/category/v1", newCategory).then(response => {
+    addCategories = () => {
+        const newCategoryObj = {
+            "title": this.state.newCategory
+            // ,"userId":this.state.currentUserId
+        }
+        
+        axios.post(`/category/v1/${this.state.currentUserId}`, newCategoryObj).then(response => {
+            console.log(response.data)
             this.setState(prevState => ({
-                allUsers: [...prevState.allUsers, response.data]
+                allCategories: [...prevState.allCategories, response.data]
             }))
         })
+        
     }
-    
+
 
     render(){
         return (

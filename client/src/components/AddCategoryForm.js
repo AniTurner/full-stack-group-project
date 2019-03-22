@@ -12,7 +12,7 @@ const AddCategoryForm = (props) => {
             </form>
 
                 <form>
-                    <select name="newCategory" onChange={props.handleChange} required>
+                    <select name="newCategory" onChange={props.handleCategoryChange} required>
                         <option value="">Select Category...</option>
                         {
                             props.allCategories.map((category) => 
@@ -20,8 +20,8 @@ const AddCategoryForm = (props) => {
                             )
                         }
                     </select>
-                </form>
-            
+            </form>
+             
         </>
     )
 }
