@@ -33,12 +33,14 @@ class BigDataProvider extends Component {
     handleLoginSubmit = (event) => {
         event.preventDefault()
         
+        // get all user's data
         axios.get("/user/v1/" + this.state.currentUserId).then(response => {
             this.setState({
                 currentUser: response.data,
                 isLoggedIn: true
             })
         })
+        // get all user's categories
         axios.get("/category/v1/byuserid/" + this.state.currentUserId).then(response => {
             this.setState({
                 allCategories: response.data
