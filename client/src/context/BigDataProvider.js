@@ -47,29 +47,24 @@ class BigDataProvider extends Component {
     handleSignupSubmit = (event) => {
         event.preventDefault()
         const UserObj = {
-            "username": this.state.currentUser.username
-            // "firstName": this.state.currentUser.firstName,
-            // "lastName": this.state.currentUser.lastName,
-            // "aboutMe": this.state.currentUser.aboutMe,
-            // "email": this.state.currentUser.email,
-            // "address": this.state.currentUser.address,
-            // "phone": this.state.currentUser.phone
+            "username": this.state.newUsername
         }
         axios.post("/user/v1", UserObj).then(response => {
             this.setState(prevState => ({
                 currentUser: response.data,
+                currentUserId: response.data._id,
                 isLoggedIn: true,
                 allUsers: [...prevState.allUsers, response.data]
-            })
+            }), () => this.getAllUserData()
             )
         })
-        this.getAllUserData()
     }
 
     // Requires UserID and category ID to get all user info
     getAllUserData = () => {
         // get all user's data
         axios.get("/user/v1/" + this.state.currentUserId).then(response => {
+            console.log("getAllUserData: get by current user id firing")
             this.setState({
                 currentUser: response.data,
                 isLoggedIn: true
@@ -78,12 +73,13 @@ class BigDataProvider extends Component {
 
         // get all user's categories
         axios.get("/category/v1/byuserid/" + this.state.currentUserId).then(response => {
+            console.log("firing")
             this.setState({
                 allCategories: response.data
             },
                 () => {
                     // redirect to the users admin page
-                    this.props.history.push(`/${this.state.currentUser.username}/categories`)
+                    this.props.history.push(`/${this.state.currentUser.username}/userinfo`)
                     // Save users id and logged in status to localStorage
                     localStorage.setItem('currentUserID', this.state.currentUser._id)
                     localStorage.setItem('isLoggedIn', this.state.isLoggedIn)
