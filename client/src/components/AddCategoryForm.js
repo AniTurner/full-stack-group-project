@@ -6,21 +6,11 @@ const AddCategoryForm = (props) => {
         <> 
             <hr/>
             <form className="add-category-form" onSubmit={props.handleCategorySubmit}>
-                <input type="text" value={props.newCategory} onChange={props.handleCategoryChange} name="newCategory" placeholder="New Category"/><br/>
+                <input type="text" value={props.newCategory} onChange={ props.handleChange} name="newCategory" placeholder="New Category"/><br/>
                 <button>Add Category</button> <br/><br/><hr/>
 
             </form>
 
-                <form>
-                    <select name="newCategory" onChange={props.handleCategoryChange} required>
-                        <option value="">Select Category...</option>
-                        {
-                            props.allCategories.map((category) => 
-                                <option value={category._id}>{category}</option>
-                            )
-                        }
-                    </select>
-            </form>
              
         </>
     )
