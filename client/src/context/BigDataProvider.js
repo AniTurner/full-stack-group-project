@@ -17,6 +17,7 @@ class BigDataProvider extends Component {
             currentPortfolioItems: [],
             allUsers: [],
             allCategories: [],
+            newCategory:'',
             token: "",
             isLoggedIn: ((localStorage.getItem('isLoggedIn')) === "true") || false,
             isPreview: false
@@ -36,31 +37,37 @@ class BigDataProvider extends Component {
             this.setState({
                 currentUser: response.data,
                 isLoggedIn: true
+            })
+        })
+        axios.get("/category/v1/byuserid/" + this.state.currentUserId).then(response => {
+            this.setState({
+                allCategories: response.data
             },
-                () => {
-                    // redirect to the users admin page
-                    this.props.history.push(`/${this.state.currentUser.username}/categories`)
-                    // Save users id and logged in status to localStorage
-                    localStorage.setItem('currentUserID', this.state.currentUser._id)
-                    localStorage.setItem('isLoggedIn', this.state.isLoggedIn)
-                })
+            () => {
+                // redirect to the users admin page
+                this.props.history.push(`/${this.state.currentUser.username}/categories`)
+                // Save users id and logged in status to localStorage
+                localStorage.setItem('currentUserID', this.state.currentUser._id)
+                localStorage.setItem('isLoggedIn', this.state.isLoggedIn)
+            })
         })
     }
-
-    handleSignupSubmit = (event) => {
+    // handleSubmit for Category
+    handleCategorySubmit = event => {
         event.preventDefault()
-        // add new user to state
-        this.setState({ newUsername: event.target.value })
-        // add new user to User DB
-        this.addUser(this.state.newUsername)
-
-        if (this.state.currentUser._id) {
-            // redirect to the users admin page
-            this.props.history.push(`/${this.state.currentUser._id}/categories`)
-
-            // Save users id to localStorage
-            localStorage.setItem('currentUserID', this.state.currentUser._id)
+        const newCategoryObj = {
+            "title": this.state.newCategory,
+            "userId":this.state.currentUserId
         }
+
+        axios.post(`/category/v1`, newCategoryObj).then(response => {
+            console.log(response.data)
+            this.setState(prevState => ({
+                allCategories: [...prevState.allCategories, response.data]
+            }))
+        })
+
+        console.log(this.state.newCategory)
     }
 
     toggleLogin = () => {
@@ -130,22 +137,33 @@ class BigDataProvider extends Component {
         })
     }
 
-    render() {
-        console.log(this.state.currentUser)
+    //Get All categories per specific user
+    getCategories = () => {
+        console.log(this.state.currentUserId)
+        axios.get(`/category/v1/byuserid/${this.state.currentUserId}`).then(response => {      
+            this.setState({
+                allCategories: response.data
+            })
+        })
+    }
+    
+    render(){
         return (
             <BigDataContext.Provider
                 value={{
                     newUsername: this.state.newUsername,
                     allUsers: this.state.allUsers,
                     allCategories: this.state.allCategories,
-                    currentUser: this.state.currentUser,
+                    currentUserId: this.state.currentUserId,
                     currentCategory: this.state.currentCategory,
                     currentPortfolioItems: this.state.currentPortfolioItems,
                     handleChange: this.handleChange,
                     handleLoginSubmit: this.handleLoginSubmit,
-                    handleSignupSubmit: this.handleSignupSubmit,
+                    handleCategoryChange: this.handleCategoryChange,
+                    handleCategorySubmit: this.handleCategorySubmit,
                     toggleLogin: this.toggleLogin,
                     getUsers: this.getUsers,
+                    getCategories: this.getCategories,
                     addUser: this.addUser,
                     deleteUser: this.deleteUser,
                     updateUser: this.updateUser,
