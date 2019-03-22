@@ -35,7 +35,8 @@ class App extends Component {
                         {/* display only if logged in */}
                         {(this.props.isLoggedIn === true) ? <MenuAdmin /> : ``}
                         {/* display when (NOT logged in) || (when logged in AND previewMode===true) */}
-                        <MenuPortfolio />
+                        {(this.props.isPreview === true) ? <MenuPortfolio /> : ``}
+                        
                     </header>
                     
                     <main>

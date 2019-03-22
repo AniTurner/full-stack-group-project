@@ -4,7 +4,7 @@ import { withListData } from '../context/BigDataProvider.js'
 
 class Welcome extends Component {
 
-    // reset all fields
+    // logs out and reset all fields
     componentDidMount() {
         this.setState({
             newUsername: '',
@@ -16,9 +16,12 @@ class Welcome extends Component {
             allCategories: [],
             newCategory: '',
             token: "",
-            isLoggedIn: ((localStorage.getItem('isLoggedIn')) === "true") || false,
+            isLoggedIn: false,
             isPreview: false
         })
+        // reset locaStorage too
+        localStorage.setItem('isLoggedIn', "false")
+        localStorage.setItem('isPreview', "false")
     }
     
     render() {

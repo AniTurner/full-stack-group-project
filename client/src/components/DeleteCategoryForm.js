@@ -6,6 +6,7 @@ class DeleteCategoryForm extends Component {
         super(props)
     }
     render() {
+    
         return (
             <form className="delete-category-form">
                 <select name="newCategory" onChange={() => this.props.handleCategoryChange()} required>
