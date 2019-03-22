@@ -4,8 +4,6 @@ import { withRouter } from 'react-router-dom';
 
 const BigDataContext = React.createContext()
 
-let userResp
-
 class BigDataProvider extends Component {
     constructor(props) {
         super(props)
@@ -17,7 +15,7 @@ class BigDataProvider extends Component {
             currentPortfolioItems: [],
             allUsers: [],
             allCategories: [],
-            newCategory:'',
+            newCategory: '',
             token: "",
             isLoggedIn: ((localStorage.getItem('isLoggedIn')) === "true") || false,
             isPreview: false
@@ -32,7 +30,11 @@ class BigDataProvider extends Component {
     // Get current user
     handleLoginSubmit = (event) => {
         event.preventDefault()
-        
+        this.getAllUserData()
+    }
+
+    // Requires UserID and category ID to get all user info
+    getAllUserData = () => {
         // get all user's data
         axios.get("/user/v1/" + this.state.currentUserId).then(response => {
             this.setState({
@@ -40,26 +42,28 @@ class BigDataProvider extends Component {
                 isLoggedIn: true
             })
         })
+
         // get all user's categories
         axios.get("/category/v1/byuserid/" + this.state.currentUserId).then(response => {
             this.setState({
                 allCategories: response.data
             },
-            () => {
-                // redirect to the users admin page
-                this.props.history.push(`/${this.state.currentUser.username}/categories`)
-                // Save users id and logged in status to localStorage
-                localStorage.setItem('currentUserID', this.state.currentUser._id)
-                localStorage.setItem('isLoggedIn', this.state.isLoggedIn)
-            })
+                () => {
+                    // redirect to the users admin page
+                    this.props.history.push(`/${this.state.currentUser.username}/categories`)
+                    // Save users id and logged in status to localStorage
+                    localStorage.setItem('currentUserID', this.state.currentUser._id)
+                    localStorage.setItem('isLoggedIn', this.state.isLoggedIn)
+                })
         })
     }
+
     // handleSubmit for Category
     handleCategorySubmit = event => {
         event.preventDefault()
         const newCategoryObj = {
             "title": this.state.newCategory,
-            "userId":this.state.currentUserId
+            "userId": this.state.currentUserId
         }
 
         axios.post(`/category/v1`, newCategoryObj).then(response => {
@@ -102,18 +106,15 @@ class BigDataProvider extends Component {
     }
 
     // Get current user
-    getUser = async (_id) => {
-        try {
-            userResp = await axios.get("/user/v1/" + _id)
+    getUser = (_id) => {
+        axios.get("/user/v1/" + _id).then(response => {
             this.setState({
-                currentUser: userResp.data
+                currentUser: response.data
             })
-        } catch (err) {
-            // handle error thrown from ANY request in the TRY
-        }
-
+        })
     }
 
+    // add new user
     addUser = (newUsername) => {
         axios.post("/user/v1", newUsername).then(response => {
             this.setState(prevState => ({
@@ -123,6 +124,7 @@ class BigDataProvider extends Component {
         })
     }
 
+    // delete user
     deleteUser = _id => {
         axios.delete(`/user/v1/${_id}`).then(response => {
             this.setState(prevState => ({
@@ -131,6 +133,7 @@ class BigDataProvider extends Component {
         })
     }
 
+    // update user
     updateUser = (_id, updates) => {
         axios.put(`/user/v1/${_id}`, updates).then(response => {
             this.setState(prevState => ({
@@ -142,14 +145,14 @@ class BigDataProvider extends Component {
     //Get All categories per specific user
     getCategories = () => {
         console.log(this.state.currentUserId)
-        axios.get(`/category/v1/byuserid/${this.state.currentUserId}`).then(response => {      
+        axios.get(`/category/v1/byuserid/${this.state.currentUserId}`).then(response => {
             this.setState({
                 allCategories: response.data
             })
         })
     }
-    
-    render(){
+
+    render() {
         return (
             <BigDataContext.Provider
                 value={{
