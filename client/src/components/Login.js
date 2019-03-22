@@ -8,11 +8,13 @@ class Login extends Component {
             <div id="login-screen">
                 {/* DISPLAY DIV ONLY IF USERS EXIST */}
                 <div>
+                    <h2>Select User</h2>    
                     <SelectUserForm />
                 </div>
 
                 {/* ALWAYS DISPLAY */}
                 <div>
+                    <h2>Add New User</h2>
                     <AddUserLoginForm />
                 </div>
             </div>
