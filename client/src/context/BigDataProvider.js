@@ -27,6 +27,16 @@ class BigDataProvider extends Component {
         this.setState({ [name]: value })
     }
 
+    // By choosing any category on dropdown list, will put current category inside currentCategory object
+    handleCategoryChange = event => {
+        const currentCategoryId = event.target.value
+        axios.get(`/category/v1/bycatid/${currentCategoryId}`).then(response => {
+            this.setState({
+                currentCategory: response.data[0]
+            })
+        })
+    }
+
     // Get current user
     handleLoginSubmit = (event) => {
         event.preventDefault()
@@ -74,6 +84,21 @@ class BigDataProvider extends Component {
         })
 
         console.log(this.state.newCategory)
+    }
+
+    //delete category
+    deleteCategory = _id => {
+        const answer = prompt(`Are you sure you want to delete ${this.state.currentCategory.title} ? `)
+        if(answer === 'yes') {
+            axios.delete("/category/v1/" + _id).then(response => {
+                console.log(response.data._id)
+                this.setState(prevState => ({
+                    allCategories: prevState.allCategories.filter(category => category._id !== _id)
+                }))
+            })
+        } else{
+            alert("Okey, Just be More Careful Next Time!!")
+        }
     }
 
     toggleLogin = () => {
@@ -166,6 +191,7 @@ class BigDataProvider extends Component {
                     handleLoginSubmit: this.handleLoginSubmit,
                     handleCategoryChange: this.handleCategoryChange,
                     handleCategorySubmit: this.handleCategorySubmit,
+                    deleteCategory: this.deleteCategory,
                     toggleLogin: this.toggleLogin,
                     getUsers: this.getUsers,
                     getCategories: this.getCategories,
