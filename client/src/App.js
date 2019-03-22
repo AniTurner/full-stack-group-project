@@ -6,6 +6,7 @@ import './styles.css'
 
 import MenuAdmin from './components/MenuAdmin.js'
 import MenuPortfolio from './components/MenuPortfolio.js'
+import Footer from './components/Footer.js'
 
 import Welcome from './components/Welcome.js'
 import Login from './components/Login.js'
@@ -29,8 +30,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <div id="container">
+                <article>
                     <header>
                         {/* display only if logged in */}
                         {(this.props.isLoggedIn === true) ? <MenuAdmin /> : ``}
@@ -38,28 +38,28 @@ class App extends Component {
                         <MenuPortfolio />
                     </header>
                     
-                    <Switch>
-                    
-                        {/* Admin Routes */}
-                        <Route exact path='/' component={Welcome} />
-                        <Route exact path='/admin' component={Login} />
-                        <Route path='/:_userid/categories' component={Categories} />
-                        <Route path='/:_userid/portfolio' component={PortfolioItems} />
-                        <Route path='/:_userid/userinfo' component={UserInfo} />
-                        
-                        {/* Portfolio Routes */}
-                        <Route path='/:_userid' component={UserHomePage} />
-                        <Route path='/:_userid/:_categoryid' component={UserCategory} />
-                        <Route path='/:_userid/contact' component={UserContact} />
-                        
-                    </Switch>
+                    <main>
+                        <Switch>
+                            {/* Admin Routes */}
+                            <Route exact path='/' component={Welcome} />
+                            <Route exact path='/admin' component={Login} />
+                            <Route path='/:_userid/categories' component={Categories} />
+                            <Route path='/:_userid/portfolio' component={PortfolioItems} />
+                            <Route path='/:_userid/userinfo' component={UserInfo} />
+                            
+                            {/* Portfolio Routes */}
+                            <Route path='/:_userid' component={UserHomePage} />
+                            <Route path='/:_userid/:_categoryid' component={UserCategory} />
+                            <Route path='/:_userid/contact' component={UserContact} />
+                            
+                        </Switch>
+                    </main>
                     
                     <footer>
-                        <p>copyright notice stuff</p>
+                        <Footer />
                     </footer>
 
-                </div>
-            </div>
+                </article>
         )
     }
 }
