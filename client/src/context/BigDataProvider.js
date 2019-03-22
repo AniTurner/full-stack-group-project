@@ -24,8 +24,14 @@ class BigDataProvider extends Component {
     }
 
     handleChange = (event) => {
-        const { name, value } = event.target
-        this.setState({ [name]: value })
+        // handleChange now caters for checkboxes
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
     }
 
     // By choosing any category on dropdown list, will put current category inside currentCategory object
@@ -216,6 +222,7 @@ class BigDataProvider extends Component {
                     handleSignupSubmit: this.handleSignupSubmit,
                     toggleLogin: this.toggleLogin,
                     togglePreview: this.togglePreview,
+                    getUser: this.getUser,
                     getUsers: this.getUsers,
                     getCategories: this.getCategories,
                     addUser: this.addUser,

@@ -32,32 +32,37 @@ class App extends Component {
         return (
                 <article>
                     <header>
-                        {/* display only if logged in */}
-                        {(this.props.isLoggedIn === true) ? <MenuAdmin /> : ``}
-                        {/* display when (NOT logged in) || (when logged in AND previewMode===true) */}
-                        {(this.props.isPreview === true) ? <MenuPortfolio /> : ``}
-                        
+                        <div className="center">
+                            {/* display only if logged in */}
+                            {(this.props.isLoggedIn === true) ? <MenuAdmin /> : ``}
+                            {/* display when (NOT logged in) || (when logged in AND previewMode===true) */}
+                            {(this.props.isPreview === true) ? <MenuPortfolio /> : ``}
+                        </div>
                     </header>
                     
                     <main>
-                        <Switch>
-                            {/* Admin Routes */}
-                            <Route exact path='/' component={Welcome} />
-                            <Route exact path='/admin' component={Login} />
-                            <Route path='/:_userid/categories' component={Categories} />
-                            <Route path='/:_userid/portfolio' component={PortfolioItems} />
-                            <Route path='/:_userid/userinfo' component={UserInfo} />
-                            
-                            {/* Portfolio Routes */}
-                            <Route path='/:_userid' component={UserHomePage} />
-                            <Route path='/:_userid/:_categoryid' component={UserCategory} />
-                            <Route path='/:_userid/contact' component={UserContact} />
-                            
-                        </Switch>
+                        <div className="center">
+                            <Switch>
+                                {/* Admin Routes */}
+                                <Route exact path='/' component={Welcome} />
+                                <Route exact path='/admin' component={Login} />
+                                <Route path='/:_username/categories' component={Categories} />
+                                <Route path='/:_username/portfolio' component={PortfolioItems} />
+                                <Route path='/:_username/userinfo' component={UserInfo} />
+                                
+                                {/* Portfolio Routes */}
+                                <Route path='/:_username' component={UserHomePage} />
+                                <Route path='/:_username/:_categoryid' component={UserCategory} />
+                                <Route path='/:_username/contact' component={UserContact} />
+                                
+                            </Switch>
+                        </div>
                     </main>
                     
                     <footer>
-                        <Footer />
+                        <div className="center">
+                            <Footer />
+                        </div>
                     </footer>
 
                 </article>
