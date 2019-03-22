@@ -21,9 +21,9 @@ mongoose.connect("mongodb://localhost:27017/attache", {useNewUrlParser: true}, (
 })
 
 // Routes
-app.use('/user/v1', require('./routes/userRoutes.js'))
-app.use('/category/v1', require('./routes/categoryRoutes.js'))
-app.use('/portfolio/v1', require('./routes/portfolioRoutes.js'))
+app.use('/api/user/v1', require('./routes/userRoutes.js'))
+app.use('/api/category/v1', require('./routes/categoryRoutes.js'))
+app.use('/api/portfolio/v1', require('./routes/portfolioRoutes.js'))
 
 // Error handler
 app.use((err, req, res, next) => {

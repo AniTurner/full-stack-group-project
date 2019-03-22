@@ -5,7 +5,8 @@ const Welcome = () => {
     return(
         <div id="welcome-screen">
             <h2>Attaché</h2>
-            <p><Link to={"/admin"}>Login / Signup</Link></p>
+            <span><Link to={"/admin"}>Login</Link></span>
+            <span><Link to={"/admin/signup"}>Signup</Link></span>
         </div>
     )
 }

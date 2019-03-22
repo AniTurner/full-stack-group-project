@@ -1,23 +1,49 @@
-import React from 'react'
-import SelectUserForm from './SelectUserForm.js'
-import AddUserLoginForm from './AddUserLoginForm.js'
-import {withContext} from '../AppProvider.js'
+import React, {Component} from 'react'
+import {withListData} from '../context/BigDataProvider.js'
 
 
-const Login = () => {
-    return(
-        <div id="login-screen">
-            {/* DISPLAY DIV ONLY IF USERS EXIST */}
+class Login extends Component {
+    constructor(){
+        super()
+        this.state = {
+            username: '',
+            password: ''
+        }
+    }
+
+    handleChange = event => {
+        const { name, value } = event.target
+        this.setState({ [name]: value })
+    }
+
+    handleSubmit = event => {
+        event.preventDefault()
+        this.props.login()
+    }
+
+    render(){
+        return (
             <div>
-                <SelectUserForm />     
+        
+                    <input 
+                        type="text"
+                        handleSubmit={this.handleSubmit}
+                        onChange={this.handleChange} 
+                        name="username"
+                        value={this.state.username}
+                    />
+
+                    <input 
+                        type="text"
+                        handleSubmit={this.handleSubmit}
+                        onChange={this.handleChange} 
+                        value={this.state.password}
+                    />
+                    <button>Login</button>
             </div>
 
-            {/* ALWAYS DISPLAY */}
-            <div>
-                <AddUserLoginForm />
-            </div>
-        </div>
-    )
+        )
+    }
 }
 
-export default Login
+export default withListData(Login)

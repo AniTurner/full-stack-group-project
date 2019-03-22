@@ -12,7 +12,8 @@ class BigDataProvider extends Component {
             currentUserId: "",
             currentCategoryId: "",
             currentPortfolioItems: [],
-            user: {},
+            user: JSON.parse(localStorage.getItem("user")) || {},
+            token: localStorage.getItem("token") || "",
             allUsers: [],
             allCategories: [],
             token: "",
@@ -21,80 +22,108 @@ class BigDataProvider extends Component {
         }
     }
     
+    signup = (userInfo) => {
+        return axios.post("/auth/signup", userInfo).then(res => {
+            const{user, token} = res.data
+            localStorage.setItem('token', token);
+            localStorage.setItem("user", JSON.stringify(user));
+            this.setState({
+                user,
+                token
+            },() => this.props.history.push(`/${this.state.currentUserId}/categories`))
+        })
+       
+    }
+
+    login = (credentials) => {
+        return axios.post('auth/login', credentials).then(res => {
+            const {token, user} = res.data
+            localStorage.setItem("token", token)
+            localStorage.setItem("user", JSON.stringify(user))
+            this.setState({
+                user, 
+                token
+            },() => this.props.history.push(`/${this.state.currentUserId}/categories`))
+        })
+    }
+
+
     handleChange = (event) => {
         const { name, value } = event.target
         this.setState({ [name]: value })
     }
     
-    handleLoginSubmit = (event) => {
-        event.preventDefault()
-        
-        // redirect to the users admin page
-        this.props.history.push(`/${this.state.currentUserId}/categories`)
-        // go to /{currentUserId}/category
-        
-        // submit the query to the db
-        // this.props.setSearchType("string", this.state.searchString)
+    // handleLoginSubmit = (event) => {
+    //     event.preventDefault()
+    //     // redirect to the users admin page
+    //     this.login(this.state)
+    // }
 
-        // // Redirect to the Search Results component
-        // this.props.history.push(`/results/cocktails/${this.state.searchString}`)
-        
-        // Save users id to localStorage
-        localStorage.setItem('currentUserId', this.state.currentUserId)
+    // handleSubmit = event => {
+    //     event.preventDefault()
+    //     this.signup(this.state)
+    // }
 
+    logout = () => {
+        localStorage.removeItem("user")
+        localStorage.removeItem("token")
+        this.setState({
+            user: {},
+            token: ''
+        })
     }
     
-    toggleLogin = () => {
-        // set theme to opposite of previous theme
-        this.setState(prevState => ({
-            isLoggedIn: (prevState.isLoggedIn === true) ? false : true
-        }))
+    // toggleLogin = () => {
+    //     // set theme to opposite of previous theme
+    //     this.setState(prevState => ({
+    //         isLoggedIn: (prevState.isLoggedIn === true) ? false : true
+    //     }))
         
-        // set localStorage theme to new theme
-        localStorage.setItem("isLoggedIn", !(this.state.isLoggedIn))
-    }
+    //     // set localStorage theme to new theme
+    //     localStorage.setItem("isLoggedIn", !(this.state.isLoggedIn))
+    // }
     
-    togglePreview = () => {
-        // set theme to opposite of previous theme
-        this.setState(prevState => ({
-            isPreview: (prevState.isPreview === true) ? false : true
-        }))
+    // togglePreview = () => {
+    //     // set theme to opposite of previous theme
+    //     this.setState(prevState => ({
+    //         isPreview: (prevState.isPreview === true) ? false : true
+    //     }))
         
-        // set localStorage theme to new theme
-        localStorage.setItem("isPreview", !(this.state.isPreview))
-    }
+    //     // set localStorage theme to new theme
+    //     localStorage.setItem("isPreview", !(this.state.isPreview))
+    // }
     
-    getUsers = () => {
-        axios.get("/user/v1").then(response => {      
-            this.setState({
-                allUsers: response.data
-            })
-        })
-    }
+    // getUsers = () => {
+    //     axios.get("/user/v1").then(response => {      
+    //         this.setState({
+    //             allUsers: response.data
+    //         })
+    //     })
+    // }
 
-    addUser = newUser => {
-        axios.post("/user/v1", newUser).then(response => {
-            this.setState(prevState => ({
-                allUsers: [...prevState.allUsers, response.data]
-            }))
-        })
-    }
+    // addUser = newUser => {
+    //     axios.post("/user/v1", newUser).then(response => {
+    //         this.setState(prevState => ({
+    //             allUsers: [...prevState.allUsers, response.data]
+    //         }))
+    //     })
+    // }
 
-    deleteUser = _id => {
-        axios.delete(`/user/v1/${_id}`).then(response => {
-            this.setState(prevState => ({
-                allUsers: prevState.allUsers.filter(user => user._id !== _id)
-            }))
-        })
-    }
+    // deleteUser = _id => {
+    //     axios.delete(`/user/v1/${_id}`).then(response => {
+    //         this.setState(prevState => ({
+    //             allUsers: prevState.allUsers.filter(user => user._id !== _id)
+    //         }))
+    //     })
+    // }
 
-    updateUser = (_id, updates) => {
-        axios.put(`/user/v1/${_id}`, updates).then(response => {
-            this.setState(prevState => ({
-                allUsers: prevState.allUsers.map(user => user._id === _id ? response.data : user)
-            }))
-        })
-    }
+    // updateUser = (_id, updates) => {
+    //     axios.put(`/user/v1/${_id}`, updates).then(response => {
+    //         this.setState(prevState => ({
+    //             allUsers: prevState.allUsers.map(user => user._id === _id ? response.data : user)
+    //         }))
+    //     })
+    // }
 
     render(){
         return (
@@ -106,16 +135,19 @@ class BigDataProvider extends Component {
                     currentCategoryId: this.state.currentCategoryId,
                     currentPortfolioItems: this.state.currentPortfolioItems,
                     handleChange: this.handleChange,
-                    handleLoginSubmit: this.handleLoginSubmit,
-                    toggleLogin: this.toggleLogin,
-                    getUsers: this.getUsers,
-                    addUser: this.addUser,
-                    deleteUser: this.deleteUser,
-                    updateUser: this.updateUser,
-                    isLoggedIn: this.state.isLoggedIn,
-                    isPreview: this.state.isPreview,
+                    // handleLoginSubmit: this.handleLoginSubmit,
+                    // toggleLogin: this.toggleLogin,
+                    // getUsers: this.getUsers,
+                    // addUser: this.addUser,
+                    // deleteUser: this.deleteUser,
+                    // updateUser: this.updateUser,
+                    // isLoggedIn: this.state.isLoggedIn,
+                    // isPreview: this.state.isPreview,
                     user: this.state.user,
-                    token: this.state.token
+                    token: this.state.token,
+                    singup: this.signup,
+                    login: this.login,
+                    logout: this.logout,
                 }}>
                 { this.props.children }
             </BigDataContext.Provider>

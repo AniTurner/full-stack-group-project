@@ -4,11 +4,10 @@ import { withListData } from './context/BigDataProvider.js'
 
 import './styles.css'
 
-import MenuAdmin from './components/MenuAdmin.js'
-import MenuPortfolio from './components/MenuPortfolio.js'
+import Login from './components/Login.js'
+import SignUp from './components/Signup.js'
 
 import Welcome from './components/Welcome.js'
-import Login from './components/Login.js'
 import Categories from './components/Categories.js'
 import PortfolioItems from './components/PortfolioItems.js'
 import UserInfo from './components/UserInfo.js'
@@ -24,7 +23,7 @@ class App extends Component {
     }
 
     componentDidMount = () => {
-        this.props.getUsers()
+        // this.props.getUsers()
     }
 
     render() {
@@ -33,9 +32,9 @@ class App extends Component {
                 <div id="container">
                     <header>
                         {/* display only if logged in */}
-                        {(this.props.isLoggedIn === true) ? <MenuAdmin /> : ``}
+                        {/* {(this.props.isLoggedIn === true) ? <MenuAdmin /> : ``} */}
                         {/* display when (NOT logged in) || (when logged in AND previewMode===true) */}
-                        <MenuPortfolio />
+                        {/* <MenuPortfolio /> */}
                     </header>
                     
                     <Switch>
@@ -43,6 +42,7 @@ class App extends Component {
                         {/* Admin Routes */}
                         <Route exact path='/' component={Welcome} />
                         <Route exact path='/admin' component={Login} />
+                        <Route exact path='/admin/signup' component={SignUp}/>
                         <Route path='/:_userid/categories' component={Categories} />
                         <Route path='/:_userid/portfolio' component={PortfolioItems} />
                         <Route path='/:_userid/userinfo' component={UserInfo} />
