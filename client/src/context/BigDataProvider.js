@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const BigDataContext = React.createContext()
 
 class BigDataProvider extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
-            newUser: '',
+            newUsername: '',
+            currentUser: {},
             currentUserId: "",
-            currentCategoryId: "",
+            currentCategory: {},
             currentPortfolioItems: [],
             user: JSON.parse(localStorage.getItem("user")) || {},
             token: localStorage.getItem("token") || "",
             allUsers: [],
             allCategories: [],
+            newCategory: '',
             token: "",
             isLoggedIn: ((localStorage.getItem('isLoggedIn')) === "true") || false,
             isPreview: false
@@ -125,14 +127,26 @@ class BigDataProvider extends Component {
     //     })
     // }
 
-    render(){
+    //Get All categories per specific user
+    getCategories = () => {
+        console.log(this.state.currentUserId)
+        axios.get(`/category/v1/byuserid/${this.state.currentUserId}`).then(response => {
+            this.setState({
+                allCategories: response.data
+            })
+        })
+    }
+
+    render() {
         return (
             <BigDataContext.Provider
                 value={{
+                    newUsername: this.state.newUsername,
                     allUsers: this.state.allUsers,
                     allCategories: this.state.allCategories,
+                    currentUser: this.state.currentUser,
                     currentUserId: this.state.currentUserId,
-                    currentCategoryId: this.state.currentCategoryId,
+                    currentCategory: this.state.currentCategory,
                     currentPortfolioItems: this.state.currentPortfolioItems,
                     handleChange: this.handleChange,
                     // handleLoginSubmit: this.handleLoginSubmit,
@@ -149,7 +163,7 @@ class BigDataProvider extends Component {
                     login: this.login,
                     logout: this.logout,
                 }}>
-                { this.props.children }
+                {this.props.children}
             </BigDataContext.Provider>
         )
     }
@@ -159,6 +173,6 @@ export default withRouter(BigDataProvider)
 
 export const withListData = C => props => (
     <BigDataContext.Consumer>
-        { value => <C {...props} {...value}/> }
+        {value => <C {...props} {...value} />}
     </BigDataContext.Consumer>
 )

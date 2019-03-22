@@ -1,14 +1,21 @@
-import React from 'react'
-
-const DeleteCategoryForm = () => {
-    return(
-        <>
+import React, { Component } from 'react'
+import { withListData } from '../context/BigDataProvider.js'
+import CategoryDropdown from './CategoryDropdown.js'
+class DeleteCategoryForm extends Component {
+    
+    // eslint-disable-next-line no-useless-constructor
+    constructor(props) {
+        super(props)
+    }
+    render() {
+    
+        return (
             <form className="delete-category-form">
-                <p>List out categories in a dropdown</p>
-                <button></button>
+                <CategoryDropdown {...this.props} />
+                <button onClick={ () => this.props.deleteCategory(this.props.currentCategory._id)}>Delete</button>
             </form>
-        </>
-    )
+        )
+    }
 }
 
-export default DeleteCategoryForm
+export default withListData(DeleteCategoryForm)

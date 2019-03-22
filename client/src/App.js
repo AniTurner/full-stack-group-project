@@ -11,6 +11,7 @@ import Welcome from './components/Welcome.js'
 import Categories from './components/Categories.js'
 import PortfolioItems from './components/PortfolioItems.js'
 import UserInfo from './components/UserInfo.js'
+import Footer from './components/Footer.js'
 
 import UserHomePage from './components/UserHomePage.js'
 import UserCategory from './components/UserCategory.js'
@@ -28,8 +29,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <div id="container">
+                <article>
                     <header>
                         {/* display only if logged in */}
                         {/* {(this.props.isLoggedIn === true) ? <MenuAdmin /> : ``} */}
@@ -55,11 +55,10 @@ class App extends Component {
                     </Switch>
                     
                     <footer>
-                        <p>copyright notice stuff</p>
+                        <Footer />
                     </footer>
 
-                </div>
-            </div>
+                </article>
         )
     }
 }

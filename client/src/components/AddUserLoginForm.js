@@ -1,13 +1,19 @@
 import React from 'react'
+import { withListData} from '../context/BigDataProvider.js'
 
-const AddUserLoginForm = () => {
+const AddUserLoginForm = (props) => {
     return(
-        <form className="add-user-form">
-            <h2>Add New User</h2>
-            <input></input>
-            <button></button>
+        <form className="add-user-form" onSubmit={props.handleSignupSubmit}>
+            <input
+                type="text"
+                name="newUsername"
+                value={props.newUsername}
+                onChange={props.handleChange}
+                placeholder="username"
+                required />
+            <button>Sign Up</button>
         </form>
     )
 }
 
-export default AddUserLoginForm
+export default withListData(AddUserLoginForm)
