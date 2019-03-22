@@ -9,13 +9,14 @@ class BigDataProvider extends Component {
         super(props)
         this.state = {
             newUsername: '',
+            newCategory: '',
             currentUser: {},
             currentUserId: "",
             currentCategory: {},
-            currentPortfolioItems: [],
+            currentPortfolioItem: {},
             allUsers: [],
             allCategories: [],
-            newCategory: '',
+            allPortfolioItems: [],
             token: "",
             isLoggedIn: ((localStorage.getItem('isLoggedIn')) === "true") || false,
             isPreview: false
