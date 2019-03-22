@@ -4,7 +4,7 @@ import { withListData } from './context/BigDataProvider.js'
 
 import './styles.css'
 
-import Login from './components/Login.js'
+import Login from './components/AuthLogin.js/index.js'
 import SignUp from './components/Signup.js'
 
 import Welcome from './components/Welcome.js'
