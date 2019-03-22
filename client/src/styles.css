@@ -5,27 +5,40 @@
     box-sizing: border-box;
 }
 
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #101010;
+}
+
 body {
-    background-color: whitesmoke;
+    background-color: #101010;
+}
+
+article {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    
 }
 
 /* 
     HEADER ELEMENTS 
 */
+
 header {
-    display: grid;
-    width: 100vw;
-    align-items: start;
-    
+    width: 100%;
 }
+
 /* 
     MENU / NAV ELEMENTS
 */
+
 #admin-nav, #portfolio-nav {
     display: flex;
-    position: relative;
-    background-color: black;
-    min-height: 40pt;
+    background-color: #101010;
     list-style: none;
     flex-direction: row;
     font-size: 12pt;
@@ -68,7 +81,7 @@ header {
 }
 
 #portfolio-nav li a {
-    color: black;
+    color: #101010;
     text-decoration: none;
     transition: all 0.3s ease;
 }
@@ -76,4 +89,99 @@ header {
 #portfolio-nav li a:hover {
     transition: all 0.3s ease;
     color: #d71d02;
+}
+
+/* MAIN ELEMENTS */
+
+main {
+    padding: 15px;
+    background-color: #f7f7f7;
+}
+
+h2 {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+/* FOOTER ELEMENTS */
+
+footer {
+    text-align: center;
+    color: silver;
+    background-color: #101010;
+    padding: 15px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.5s ease;
+}
+
+footer a:hover {
+    color: red;
+}
+
+/* FORM STYLES */
+
+/* Fields */
+
+::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #aaa;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #aaa;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #aaa;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #aaa;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #aaa;
+}
+
+/* Inputs */
+input, select, option {
+    background-color: white;
+    border: 1px solid silver;
+    font-size: 1em;
+    padding: 10px 10px;
+    font-weight: normal;
+    width: 250px;
+    border-right: none;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url('./gfx/dropdown-arrow.png') 96% / 10% no-repeat #eee;
+    border-radius: 0%;
+    padding-right: 50px;
+}
+
+/* Button */
+
+button {
+    background-color: #00C5BE;
+    border: 1px solid silver;
+    border-left: none;
+    color: #fff;
+    font-size: 1em;
+    padding: 10px 10px;
+    width: 150px;
+    text-transform: uppercase;
+    font-weight: normal;
 }
