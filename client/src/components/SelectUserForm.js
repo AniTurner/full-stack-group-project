@@ -4,7 +4,7 @@ import { withListData} from '../context/BigDataProvider.js'
 const SelectUserForm = (props) => {
     return(
         <form id="select-user-form" onSubmit={props.handleLoginSubmit}>
-            <h2>Select User</h2>
+            
             <select name="currentUserId" onChange={props.handleChange} required>
                 <option value="">Select user...</option>
                 {

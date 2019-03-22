@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { withListData } from './context/BigDataProvider.js'
+import { withListData } from '../context/BigDataProvider.js'
 
 class Welcome extends Component {
 
