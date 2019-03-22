@@ -4,7 +4,6 @@ import { withListData} from '../context/BigDataProvider.js'
 const AddUserLoginForm = (props) => {
     return(
         <form className="add-user-form" onSubmit={props.handleSignupSubmit}>
-            <h2>Add New User</h2>
             <input
                 type="text"
                 name="newUsername"
