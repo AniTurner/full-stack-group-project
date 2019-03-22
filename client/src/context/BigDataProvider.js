@@ -43,6 +43,29 @@ class BigDataProvider extends Component {
         this.getAllUserData()
     }
 
+    // Get current user
+    handleSignupSubmit = (event) => {
+        event.preventDefault()
+        const UserObj = {
+            "username": this.state.currentUser.username
+            // "firstName": this.state.currentUser.firstName,
+            // "lastName": this.state.currentUser.lastName,
+            // "aboutMe": this.state.currentUser.aboutMe,
+            // "email": this.state.currentUser.email,
+            // "address": this.state.currentUser.address,
+            // "phone": this.state.currentUser.phone
+        }
+        axios.post("/user/v1", UserObj).then(response => {
+            this.setState(prevState => ({
+                currentUser: response.data,
+                isLoggedIn: true,
+                allUsers: [...prevState.allUsers, response.data]
+            })
+            )
+        })
+        this.getAllUserData()
+    }
+
     // Requires UserID and category ID to get all user info
     getAllUserData = () => {
         // get all user's data
@@ -102,22 +125,22 @@ class BigDataProvider extends Component {
     }
 
     toggleLogin = () => {
-        // set theme to opposite of previous theme
+        // set state logged in to opposite of before
         this.setState(prevState => ({
             isLoggedIn: (prevState.isLoggedIn === true) ? false : true
         }))
 
-        // set localStorage theme to new theme
+        // set localStorage logged in to opposite of before
         localStorage.setItem("isLoggedIn", !(this.state.isLoggedIn))
     }
 
     togglePreview = () => {
-        // set theme to opposite of previous theme
+        // set preview mode to opposite of previous preview mode
         this.setState(prevState => ({
             isPreview: (prevState.isPreview === true) ? false : true
         }))
 
-        // set localStorage theme to new theme
+        // set localStorage preview mode
         localStorage.setItem("isPreview", !(this.state.isPreview))
     }
 
@@ -184,6 +207,7 @@ class BigDataProvider extends Component {
                     newUsername: this.state.newUsername,
                     allUsers: this.state.allUsers,
                     allCategories: this.state.allCategories,
+                    currentUser: this.state.currentUser,
                     currentUserId: this.state.currentUserId,
                     currentCategory: this.state.currentCategory,
                     currentPortfolioItems: this.state.currentPortfolioItems,
@@ -191,8 +215,9 @@ class BigDataProvider extends Component {
                     handleLoginSubmit: this.handleLoginSubmit,
                     handleCategoryChange: this.handleCategoryChange,
                     handleCategorySubmit: this.handleCategorySubmit,
-                    deleteCategory: this.deleteCategory,
+                    handleSignupSubmit: this.handleSignupSubmit,
                     toggleLogin: this.toggleLogin,
+                    togglePreview: this.togglePreview,
                     getUsers: this.getUsers,
                     getCategories: this.getCategories,
                     addUser: this.addUser,

@@ -7,7 +7,7 @@ const AddUserLoginForm = (props) => {
             <input
                 type="text"
                 name="newUsername"
-                value=""
+                value={props.newUsername}
                 onChange={props.handleChange}
                 placeholder="username"
                 required />
