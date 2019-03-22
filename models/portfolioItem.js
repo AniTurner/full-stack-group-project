@@ -25,7 +25,10 @@ const portfolioItemSchema = new Schema({
     description:{
         type:String
     },
-    featured:{
+    link:{
+        type:String
+    },
+    isFeatured:{
         type:Boolean
     }
 
