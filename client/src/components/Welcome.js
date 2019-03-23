@@ -20,15 +20,17 @@ class Welcome extends Component {
             isPreview: false
         })
         // reset locaStorage too
-        localStorage.setItem('isLoggedIn', "false")
-        localStorage.setItem('isPreview', "false")
+        // localStorage.setItem('isLoggedIn', "false")
+        // localStorage.setItem('isPreview', "false")
     }
     
     render() {
         return(
             <div id="welcome-screen">
                 <h2>Attaché</h2>
-                <p><Link to={"/admin"}>Login / Signup</Link></p>
+                <p><Link to={"/admin"}>Login</Link></p>
+                <p><Link to={"/admin/signup"}>Signup</Link></p>
+
             </div>
         )    
     }

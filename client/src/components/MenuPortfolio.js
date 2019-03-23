@@ -5,7 +5,7 @@ import { withListData } from '../context/BigDataProvider.js'
 class MenuPortfolio extends Component {
 
     render() {
-        const { currentUser, isLoggedIn, togglePreview } = this.props
+        const { currentUser, isLoggedIn, togglePreview, login, logout } = this.props
 
         return (
             <div role="navigation" id="portfolio-nav">
@@ -14,8 +14,10 @@ class MenuPortfolio extends Component {
                 <li className="tab"><Link to={`/${currentUser.username}/contact`}>Contact</Link></li>
                 {(isLoggedIn === true) 
                 ? <li className="tab"><Link to={`/${currentUser.username}/userinfo`} onClick={togglePreview}>Admin</Link></li>
-                : <li className="tab"><Link to={"/"} onClick={togglePreview}>Log In</Link></li>
+                : <li className="tab"><Link to={"/"} onClick={login}>Log In</Link></li>
                 }
+
+                
             </div>
         )
     }

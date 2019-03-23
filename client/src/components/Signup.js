@@ -1,18 +1,24 @@
 import React, {Component} from 'react'
 import {withListData} from '../context/BigDataProvider.js'
 
-//make it a class
-//same for LOGIN component
-//give it it's own handlechange and handleSubmit (this.props.signup)
-//this.state will have username: '', password: ''
-//
+
 class Signup extends Component {
     constructor(){
         super()
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            errorMessage: ""
+
         }
+    }
+
+    clearInputs = () => {
+        this.setState({
+            username: "",
+            password: "",
+            errorMessage: ""
+        })
     }
 
     handleChange = event => {
@@ -22,28 +28,35 @@ class Signup extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        this.props.signup()
+        this.props.signup(this.state)
+            .then(() => this.clearInputs())
+            .catch(err => {
+                this.setState({errorMessage: err.response.data.message})
+            })
     }
+
+
 
     render(){
         return (
-            <div>
+            <form onSubmit={this.handleSubmit}>
                 <input 
                     type="text"
-                    handleSubmit={this.handleSubmit}
                     onChange={this.handleChange} 
                     name="username"
                     value={this.state.username}
                 />
 
                 <input 
-                    type="text"
-                    handleSubmit={this.handleSubmit}
+                    name="password"
+                    type="password"
                     onChange={this.handleChange} 
                     value={this.state.password}
                 />
+                {this.state.errorMessage && <p style={{color: "red"}}>{this.state.errorMessage}</p>}
+
                 <button>Signup</button>
-            </div>
+            </form>
 
         )
     }

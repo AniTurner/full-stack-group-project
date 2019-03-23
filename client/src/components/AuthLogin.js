@@ -2,13 +2,23 @@ import React, {Component} from 'react'
 import {withListData} from '../context/BigDataProvider.js'
 
 
-class Login extends Component {
+class AuthLogin extends Component {
     constructor(){
         super()
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            errorMessage: ""
+
         }
+    }
+
+    clearInputs = () => {
+        this.setState({
+            username: "",
+            password: "",
+            errorMessage: ""
+        })
     }
 
     handleChange = event => {
@@ -18,12 +28,16 @@ class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        this.props.login()
-    }
+        this.props.login(this.state)
+        .then(() => this.clearInputs())
+        .catch(err => {
+            this.setState({errorMessage: err.response.data.message})
+        })
+}
 
     render(){
         return (
-            <div>
+            <form onSubmit={this.handleSubmit}>
         
                     <input 
                         type="text"
@@ -34,16 +48,21 @@ class Login extends Component {
                     />
 
                     <input 
-                        type="text"
+                        type= "password"
+                        name="password"
                         handleSubmit={this.handleSubmit}
                         onChange={this.handleChange} 
                         value={this.state.password}
                     />
+
+
                     <button>Login</button>
-            </div>
+                    {this.state.errorMessage && <p style={{color: "red"}}>{this.state.errorMessage}</p>}
+
+            </form>
 
         )
     }
 }
 
-export default withListData(Login)
+export default withListData(AuthLogin)
