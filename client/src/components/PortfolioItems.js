@@ -7,7 +7,7 @@ const PortfolioItems = () => {
         <main>
             <div id="portfolio-edit-screen" className="center-crop">
                 <h2>Portfolio</h2>
-                <AddEditPortfolioItemForm />
+                <AddEditPortfolioItemForm btnText="Save"/>
                 
                 {/* DISPLAY DIV ONLY IF PORTFOLIO ITEMS EXIST */}
                 <div id="portfolio-list">

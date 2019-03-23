@@ -11,7 +11,7 @@ const AddCategoryForm = (props) => {
                 name="newCategory"
                 placeholder="New Category"
                 required />
-            <button>Add Category</button>
+            <button>{props.btnText}</button>
         </form>
     )
 }

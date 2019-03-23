@@ -5,12 +5,12 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 import './styles.css'
 
+import Login from './components/Login.js'
 import MenuAdmin from './components/MenuAdmin.js'
 import MenuPortfolio from './components/MenuPortfolio.js'
 import Footer from './components/Footer.js'
 
-import AuthLogin from './components/AuthLogin.js'
-import SignUp from './components/Signup.js'
+
 
 import Welcome from './components/Welcome.js'
 import Categories from './components/Categories.js'
@@ -44,9 +44,9 @@ class App extends Component {
 
                 <Switch>
                     {/* Admin Routes */}
-                    <Route exact path='/' component={Welcome} />
-                    <Route exact path='/admin' render={rprops => !this.props.token ? <AuthLogin {...rprops} /> : <Redirect to={`/${this.props.user.username}/userinfo`} />} />
-                    <Route exact path='/admin/signup' render={rprops => !this.props.token ? <SignUp {...rprops} /> : <Redirect to={`/${this.props.user.username}/userinfo`} />} />
+                    <Route exact path='/' render={rprops => !this.props.token ? <Welcome {...rprops} /> : <Redirect to={`/${this.props.user.username}/userinfo`} />} />
+                    {/* <Route exact path='/admin' render={rprops => !this.props.token ? <Login {...rprops} /> : <Redirect to={`/${this.props.user.username}/userinfo`} />} /> */}
+                    {/* <Route exact path='/admin/signup' render={rprops => !this.props.token ? <SignUp {...rprops} /> : <Redirect to={`/${this.props.user.username}/userinfo`} />} /> */}
                     <ProtectedRoute path="/:_username/categories" component={Categories} />
                     {/* <Route path='/:_userid/categories' component={Categories} /> */}
                     <ProtectedRoute path='/:_username/portfolio' component={PortfolioItems} />
