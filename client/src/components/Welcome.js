@@ -23,16 +23,25 @@ class Welcome extends Component {
         // localStorage.setItem('isLoggedIn', "false")
         // localStorage.setItem('isPreview', "false")
     }
-    
-    render() {
-        return(
-            <div id="welcome-screen">
-                <h2>Attaché</h2>
-                <p><Link to={"/admin"}>Login</Link></p>
-                <p><Link to={"/admin/signup"}>Signup</Link></p>
 
+    render() {
+        return (
+            <div id="welcome-screen">
+                <div className="outer-div">
+                    <div className="inner-div">
+                    </div>
+                </div>
+                <div className="z-content">
+                    <div className="vertical-align-parent">
+                        <div className="vertical-align-child">
+                            <h1>&lt;tt&gt;ché</h1>
+                            <p><Link to={"/admin"}>Login</Link></p>
+                            <p><Link to={"/admin/signup"}>Signup</Link></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        )    
+        )
     }
 }
 

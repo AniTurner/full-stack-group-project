@@ -48,9 +48,9 @@ class BigDataProvider extends Component {
 
     handleChange = (event) => {
         // handleChange now caters for checkboxes
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
+        const target = event.target
+        const value = target.type === 'checkbox' ? target.checked : target.value
+        const name = target.name
 
         this.setState({
             [name]: value

@@ -9,6 +9,9 @@ const userSchema = new Schema({
         required:true,
         lowercase: true
     },
+    imgUrl:{
+        type: String
+    },
     firstName:{
         type:String
     },
