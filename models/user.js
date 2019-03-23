@@ -6,6 +6,9 @@ const userSchema = new Schema({
         type:String,
         required:true
     },
+    imgUrl:{
+        type: String
+    },
     firstName:{
         type:String
     },
