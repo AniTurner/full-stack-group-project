@@ -21,12 +21,31 @@ article {
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-    
+}
+
+.center-crop {
+    width: 900px;
+    margin: 0 auto;
 }
 
 .center {
-    width: 900px;
-    margin: 0 auto;
+    position: relative;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.vertical-align-parent {
+    position: relative;
+    height: 70vh;
+}
+
+.vertical-align-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%);
+    transform: translateX(-50%);
 }
 
 /* 
@@ -35,6 +54,10 @@ article {
 
 header {
     width: 100%;
+}
+
+.hidden {
+    display: none;
 }
 
 /* 
@@ -158,6 +181,7 @@ footer a:hover {
 }
 
 /* Inputs */
+
 input, select, option {
     background-color: white;
     border: 1px solid silver;
@@ -167,9 +191,11 @@ input, select, option {
     width: 250px;
     margin-right: 10px;
 }
+
 input[type='checkbox'] {
     width: 15px !important;
 }
+
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -191,3 +217,22 @@ button {
     text-transform: uppercase;
     font-weight: normal;
 }
+
+/* PAGE SPECIFIC */
+#welcome-screen {
+    height: 100vh;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.5s ease-in-out;
+    background-image: url('./gfx/splash.jpg');
+}
+
+#welcome-screen h1 {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 70px;
+    letter-spacing: 10px;
+    
+}
+

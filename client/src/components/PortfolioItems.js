@@ -4,17 +4,19 @@ import AddEditPortfolioItemForm from './AddEditPortfolioItemForm.js'
 
 const PortfolioItems = () => {
     return(
-        <div id="portfolio-edit-screen">
-            <h2>Portfolio</h2>
-            <AddEditPortfolioItemForm />
-            
-            {/* DISPLAY DIV ONLY IF PORTFOLIO ITEMS EXIST */}
-            <div id="portfolio-list">
-            {/* Map over here */}
-                <PortfolioItem />           
+        <main>
+            <div id="portfolio-edit-screen" className="center-crop">
+                <h2>Portfolio</h2>
+                <AddEditPortfolioItemForm />
+                
+                {/* DISPLAY DIV ONLY IF PORTFOLIO ITEMS EXIST */}
+                <div id="portfolio-list">
+                {/* Map over here */}
+                    <PortfolioItem />           
+                </div>
+    
             </div>
-
-        </div>
+        </main>
     )
 }
 
