@@ -29,10 +29,11 @@ class Signup extends Component {
     handleSubmit = event => {
         event.preventDefault()
         this.props.signup(this.state)
-            .then(() => this.clearInputs())
+            .then(() => '' )
             .catch(err => {
-                this.setState({errorMessage: err.response.data.message})
+                this.setState({errorMessage: err.response.data.errMsg})
             })
+
     }
 
 
@@ -53,9 +54,11 @@ class Signup extends Component {
                     onChange={this.handleChange} 
                     value={this.state.password}
                 />
-                {this.state.errorMessage && <p style={{color: "red"}}>{this.state.errorMessage}</p>}
+
 
                 <button>Signup</button>
+                {this.state.errorMessage && <p style={{color: "red"}}>{this.state.errorMessage}</p>}
+
             </form>
 
         )

@@ -17,8 +17,8 @@ class BigDataProvider extends Component {
         this.state = {
             newUsername: '',
             newCategory: '',
-            currentUser: {},
-            currentUserId: "",
+            // currentUser: {},
+            // currentUserId: "",
             currentCategory: {},
             currentPortfolioItem: {},
             allUsers: [],
@@ -32,7 +32,7 @@ class BigDataProvider extends Component {
     }
 
     signup = (userInfo) => {
-        return dataAxios.post("/auth/signup", userInfo).then(response => {
+        return axios.post("/auth/signup", userInfo).then(response => {
             const { user, token } = response.data
             localStorage.setItem('token', token);
             localStorage.setItem("user", JSON.stringify(user));
@@ -58,7 +58,7 @@ class BigDataProvider extends Component {
     }
 
     login = (credentials) => {
-        return dataAxios.post('auth/login', credentials).then(response => {
+        return axios.post('auth/login', credentials).then(response => {
             const { token, user } = response.data
             localStorage.setItem("token", token)
             console.log(user)
@@ -90,8 +90,8 @@ class BigDataProvider extends Component {
         }
         axios.post("/user/v1", UserObj).then(response => {
             this.setState(prevState => ({
-                currentUser: response.data,
-                currentUserId: response.data._id,
+                user: response.data,
+                user_id: response.data._id,
                 isLoggedIn: true,
                 allUsers: [...prevState.allUsers, response.data]
             }), () => this.getAllUserData()
@@ -102,25 +102,25 @@ class BigDataProvider extends Component {
     // Requires UserID and category ID to get all user info
     getAllUserData = () => {
         // get all user's data
-        dataAxios.get("/api/user/v1/" + this.state.currentUserId).then(response => {
+        dataAxios.get("/api/user/v1/" + this.state.user._id).then(response => {
             console.log("getAllUserData: get by current user id firing")
             this.setState({
-                currentUser: response.data,
+                user: response.data,
                 isLoggedIn: true
             })
         })
 
         // get all user's categories
-        dataAxios.get("/api/category/v1/byuserid/" + this.state.currentUserId).then(response => {
+        dataAxios.get("/api/category/v1/byuserid/" + this.state.user._id).then(response => {
             console.log("firing")
             this.setState({
                 allCategories: response.data
             },
                 () => {
                     // redirect to the users admin page
-                    this.props.history.push(`/${this.state.currentUser.username}/userinfo`)
+                    this.props.history.push(`/${this.state.user.username}/userinfo`)
                     // Save users id and logged in status to localStorage
-                    localStorage.setItem('currentUserID', this.state.currentUser._id)
+                    // localStorage.setItem('currentUserID', this.state.currentUser._id)
                     localStorage.setItem('isLoggedIn', this.state.isLoggedIn)
                     
                 })
@@ -142,6 +142,7 @@ class BigDataProvider extends Component {
             token: ''
         })
         this.toggleLogin()
+        this.togglePreview()
 
     }
 
@@ -215,8 +216,8 @@ class BigDataProvider extends Component {
                     allUsers: this.state.allUsers,
                     allCategories: this.state.allCategories,
                     allPortfolioItems: this.state.allPortfolioItems,
-                    currentUser: this.state.currentUser,
-                    currentUserId: this.state.currentUserId,
+                    // currentUser: this.state.currentUser,
+                    // currentUserId: this.state.currentUserId,
                     currentCategory: this.state.currentCategory,
                     currentPortfolioItem: this.state.currentPortfolioItem,
                     handleChange: this.handleChange,

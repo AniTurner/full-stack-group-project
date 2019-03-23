@@ -29,7 +29,7 @@ class App extends Component {
     }
 
     componentDidMount = () => {
-        // this.props.getUsers()
+        this.props.getUsers()
     }
 
     render() {
@@ -37,7 +37,7 @@ class App extends Component {
             <article>
                 <header>
                     {/* display only if logged in */}
-                    {(this.props.isLoggedIn === true) ? <MenuAdmin /> : ``}
+                    {(this.props.token) ? <MenuAdmin /> : ``}
                     {/* display when (NOT logged in) || (when logged in AND previewMode===true) */}
                     {(this.props.isPreview === true) ? <MenuPortfolio /> : ``}
                 </header>

@@ -20,8 +20,8 @@ class Welcome extends Component {
             isPreview: false
         })
         // reset locaStorage too
-        // localStorage.setItem('isLoggedIn', "false")
-        // localStorage.setItem('isPreview', "false")
+        localStorage.setItem('isLoggedIn', "false")
+        localStorage.setItem('isPreview', "false")
     }
 
     render() {

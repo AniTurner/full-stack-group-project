@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React, { Component } from 'react'
 import SelectUserForm from './SelectUserForm.js'
 import AddUserLoginForm from './AddUserLoginForm.js'
@@ -48,4 +46,3 @@ class Login extends Component {
 }
 
 export default Login
->>>>>>> master

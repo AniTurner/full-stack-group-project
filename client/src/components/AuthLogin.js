@@ -30,9 +30,9 @@ class AuthLogin extends Component {
         event.preventDefault()
         this.props.login(this.state)
         .then(() => this.clearInputs())
-        .catch(err => {
-            this.setState({errorMessage: err.response.data.message})
-        })
+        // .catch(err => {
+        //     this.setState({errorMessage: err.response.data.errMsg})
+        // })
 }
 
     render(){
@@ -52,6 +52,7 @@ class AuthLogin extends Component {
                         onChange={this.handleChange} 
                         value={this.state.password}
                     />
+                
 
 
                     <button>Login</button>
