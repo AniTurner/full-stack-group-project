@@ -27,8 +27,8 @@ portfolioItemRouter.get('/search', (req, res) => {
 })
 
 // CREATE NEW CATEGORY PER USER WITH SPECIFIED CATEGORY
-portfolioItemRouter.post('/add', (req, res, next) => {
-    const { userid, categoryid } = req.query
+portfolioItemRouter.post('/:userid/:categoryid', (req, res, next) => {
+    const { userid, categoryid } = req.params
     const newPortfolioItem = new PortfolioItem(req.body)
     newPortfolioItem.userId = userid
     newPortfolioItem.categoryId = categoryid

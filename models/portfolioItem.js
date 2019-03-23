@@ -2,36 +2,36 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const portfolioItemSchema = new Schema({
-    userId:{
+    userId: {
         type: Schema.Types.ObjectId,
         required: true
     },
-    categoryId:{
+    categoryId: {
         type: Schema.Types.ObjectId,
         required: true
     },
-    title:{
+    title: {
         type: String,
         required: true
     },
-    imgUrl:{
-        type:String,
+    imgUrl: {
+        type: String,
         required: true
     },
-    imgTitle:{
-        type:String,
+    imgTitle: {
+        type: String,
         required: true
     },
-    description:{
-        type:String
+    description: {
+        type: String
     },
-    link:{
-        type:String
+    link: {
+        type: String
     },
-    isFeatured:{
-        type:Boolean
+    isFeatured: {
+        type: Boolean,
+        required: true
     }
-
 })
 
 
