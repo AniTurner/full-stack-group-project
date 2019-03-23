@@ -13,7 +13,15 @@ class BigDataProvider extends Component {
             currentUser: {},
             currentUserId: "",
             currentCategory: {},
-            currentPortfolioItem: {},
+            currentPortfolioId: "",
+            currentPortfolioItem: {
+                title: "",
+                imgTitle: "",
+                imgUrl: "",
+                description: "",
+                link: "",
+                isFeatured: false
+            },
             allUsers: [],
             allCategories: [],
             allPortfolioItems: [],
@@ -67,6 +75,42 @@ class BigDataProvider extends Component {
         })
     }
 
+    handlePortfolioChange = (event) => {
+        // handlePortfolioChange now caters for checkboxes
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState(prevState => (
+            {
+                currentPortfolioItem: {
+                    ...prevState.currentPortfolioItem,
+                    [name]: value
+                }
+            }))
+    }
+
+    // Add edit portfolio item
+    handlePortfolioSubmit = (event) => {
+        event.preventDefault()
+        const PortfolioObj = {
+            "title": this.state.currentPortfolioItem.title,
+            "imgTitle": this.state.currentPortfolioItem.imgTitle,
+            "imgUrl": this.state.currentPortfolioItem.imgUrl,
+            "description": this.state.currentPortfolioItem.description || '',
+            "link": this.state.currentPortfolioItem.link || '',
+            "isFeatured": this.state.currentPortfolioItem.isFeatured || false
+        }
+        axios.post(`/portfolio/v1/${this.state.currentUserId}/${this.state.currentCategory._id}`, PortfolioObj).then(response => {
+            this.setState(prevState => ({
+                currentPortfolioItem: response.data,
+                currentPortfolioId: response.data._id,
+                allPortfolioItems: [...prevState.allPortfolioItems, response.data]
+            }), () => this.getAllUserData()
+            )
+        })
+    }
+
     // Requires UserID and category ID to get all user info
     getAllUserData = () => {
         // get all user's data
@@ -115,14 +159,14 @@ class BigDataProvider extends Component {
     //delete category
     deleteCategory = _id => {
         const answer = prompt(`Are you sure you want to delete ${this.state.currentCategory.title} ? `)
-        if(answer === 'yes') {
+        if (answer === 'yes') {
             axios.delete("/category/v1/" + _id).then(response => {
                 console.log(response.data._id)
                 this.setState(prevState => ({
                     allCategories: prevState.allCategories.filter(category => category._id !== _id)
                 }))
             })
-        } else{
+        } else {
             alert("Okey, Just be More Careful Next Time!!")
         }
     }
@@ -219,6 +263,8 @@ class BigDataProvider extends Component {
                     handleLoginSubmit: this.handleLoginSubmit,
                     handleCategoryChange: this.handleCategoryChange,
                     handleCategorySubmit: this.handleCategorySubmit,
+                    handlePortfolioChange: this.handlePortfolioChange,
+                    handlePortfolioSubmit: this.handlePortfolioSubmit,
                     handleSignupSubmit: this.handleSignupSubmit,
                     toggleLogin: this.toggleLogin,
                     togglePreview: this.togglePreview,
