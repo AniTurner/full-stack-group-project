@@ -32,16 +32,12 @@ class App extends Component {
         return (
                 <article>
                     <header>
-                        <div className="center">
-                            {/* display only if logged in */}
-                            {(this.props.isLoggedIn === true) ? <MenuAdmin /> : ``}
-                            {/* display when (NOT logged in) || (when logged in AND previewMode===true) */}
-                            {(this.props.isPreview === true) ? <MenuPortfolio /> : ``}
-                        </div>
+                        {/* display only if logged in */}
+                        {(this.props.isLoggedIn === true) ? <MenuAdmin /> : ``}
+                        {/* display when (NOT logged in) || (when logged in AND previewMode===true) */}
+                        {(this.props.isPreview === true) ? <MenuPortfolio /> : ``}
                     </header>
                     
-                    <main>
-                        <div className="center">
                             <Switch>
                                 {/* Admin Routes */}
                                 <Route exact path='/' component={Welcome} />
@@ -56,13 +52,9 @@ class App extends Component {
                                 <Route path='/:_username/contact' component={UserContact} />
                                 
                             </Switch>
-                        </div>
-                    </main>
                     
                     <footer>
-                        <div className="center">
-                            <Footer />
-                        </div>
+                        <Footer />
                     </footer>
 
                 </article>

@@ -8,14 +8,16 @@ class MenuPortfolio extends Component {
         const { currentUser, isLoggedIn, togglePreview } = this.props
 
         return (
-            <div role="navigation" id="portfolio-nav">
-                <li className="tab"><Link to={`/${currentUser.username}`}>Home</Link></li>
-                {/* Map out all categories with their links here */}
-                <li className="tab"><Link to={`/${currentUser.username}/contact`}>Contact</Link></li>
-                {(isLoggedIn === true) 
-                ? <li className="tab"><Link to={`/${currentUser.username}/userinfo`} onClick={togglePreview}>Admin</Link></li>
-                : <li className="tab"><Link to={"/"} onClick={togglePreview}>Log In</Link></li>
-                }
+            <div className="center-crop">
+                <div role="navigation" id="portfolio-nav">
+                    <li className="tab"><Link to={`/${currentUser.username}`}>Home</Link></li>
+                    {/* Map out all categories with their links here */}
+                    <li className="tab"><Link to={`/${currentUser.username}/contact`}>Contact</Link></li>
+                    {(isLoggedIn === true) 
+                    ? <li className="tab"><Link to={`/${currentUser.username}/userinfo`} onClick={togglePreview}>Admin</Link></li>
+                    : <li className="tab"><Link to={"/"} onClick={togglePreview}>Log In</Link></li>
+                    }
+                </div>
             </div>
         )
     }
