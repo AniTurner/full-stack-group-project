@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom'
 import { withListData } from '../context/BigDataProvider.js'
 
 class MenuAdmin extends Component {
+    // eslint-disable-next-line no-useless-constructor
+    constructor(props) {
+        super(props)
+    }
+    componentDidMount = () => {
+        // this.props.getUser(this.props.currentUserId)
+    }
 
     render() {
         const { currentUser, logout, togglePreview } = this.props

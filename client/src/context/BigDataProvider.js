@@ -3,7 +3,7 @@ import axios from 'axios'
 import { withRouter } from 'react-router-dom';
 const dataAxios = axios.create();
 
-dataAxios.interceptors.request.use((config)=>{
+dataAxios.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
     config.headers.Authorization = `Bearer ${token}`;
     return config;
@@ -11,7 +11,7 @@ dataAxios.interceptors.request.use((config)=>{
 const BigDataContext = React.createContext()
 
 class BigDataProvider extends Component {
-    
+
     constructor(props) {
         super(props)
         this.state = {
@@ -30,10 +30,10 @@ class BigDataProvider extends Component {
             isPreview: false
         }
     }
-    
+
     signup = (userInfo) => {
-        return dataAxios.post("/auth/signup", userInfo).then(res => {
-            const{user, token} = res.data
+        return dataAxios.post("/auth/signup", userInfo).then(response => {
+            const { user, token } = response.data
             localStorage.setItem('token', token);
             localStorage.setItem("user", JSON.stringify(user));
             this.setState({
@@ -41,32 +41,44 @@ class BigDataProvider extends Component {
                 token
             })
             this.toggleLogin()
-            return res;
-        })  
+            return response;
+        })
+    }
+
+
+    handleChange = (event) => {
+        // handleChange now caters for checkboxes
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        })
     }
 
     login = (credentials) => {
-        return dataAxios.post('auth/login', credentials).then(res => {
-            const {token, user} = res.data
+        return dataAxios.post('auth/login', credentials).then(response => {
+            const { token, user } = response.data
             localStorage.setItem("token", token)
             console.log(user)
             localStorage.setItem("user", JSON.stringify(user))
             this.setState({
-                user, 
+                user,
                 token
-                // currentCategory: res.data[0]
-            },() => this.getCategories())
-            
+            }, () => this.getCategories())
+
             this.toggleLogin()
-            return res;
-                
-            })
-            
+            return response;
+
+        })
+
     }
 
     // Get current user
     handleLoginSubmit = (event) => {
         event.preventDefault()
+        console.log("hellooooo")
         this.getAllUserData()
     }
 
@@ -90,7 +102,7 @@ class BigDataProvider extends Component {
     // Requires UserID and category ID to get all user info
     getAllUserData = () => {
         // get all user's data
-        dataAxios.get("/api//user/v1/" + this.state.currentUserId).then(response => {
+        dataAxios.get("/api/user/v1/" + this.state.currentUserId).then(response => {
             console.log("getAllUserData: get by current user id firing")
             this.setState({
                 currentUser: response.data,
@@ -110,6 +122,7 @@ class BigDataProvider extends Component {
                     // Save users id and logged in status to localStorage
                     localStorage.setItem('currentUserID', this.state.currentUser._id)
                     localStorage.setItem('isLoggedIn', this.state.isLoggedIn)
+                    
                 })
         })
     }
@@ -119,7 +132,7 @@ class BigDataProvider extends Component {
         const { name, value } = event.target
         this.setState({ [name]: value })
     }
-    
+
 
     logout = () => {
         localStorage.removeItem("user")
@@ -131,29 +144,29 @@ class BigDataProvider extends Component {
         this.toggleLogin()
 
     }
-    
+
     toggleLogin = () => {
         // set theme to opposite of previous theme
         this.setState(prevState => ({
             isLoggedIn: (prevState.isLoggedIn === true) ? false : true
         }))
-        
+
         // set localStorage theme to new theme
         localStorage.setItem("isLoggedIn", !(this.state.isLoggedIn))
     }
-    
+
     togglePreview = () => {
         // set theme to opposite of previous theme
         this.setState(prevState => ({
             isPreview: (prevState.isPreview === true) ? false : true
         }))
-        
+
         // set localStorage theme to new theme
         localStorage.setItem("isPreview", !(this.state.isPreview))
     }
-    
+
     getUsers = () => {
-        axios.get("/user/v1").then(response => {      
+        axios.get("/user/v1").then(response => {
             this.setState({
                 allUsers: response.data
             })
@@ -201,12 +214,15 @@ class BigDataProvider extends Component {
                     newUsername: this.state.newUsername,
                     allUsers: this.state.allUsers,
                     allCategories: this.state.allCategories,
+                    allPortfolioItems: this.state.allPortfolioItems,
                     currentUser: this.state.currentUser,
                     currentUserId: this.state.currentUserId,
                     currentCategory: this.state.currentCategory,
-                    currentPortfolioItems: this.state.currentPortfolioItems,
+                    currentPortfolioItem: this.state.currentPortfolioItem,
                     handleChange: this.handleChange,
                     toggleLogin: this.toggleLogin,
+                    togglePreview: this.togglePreview,
+                    getUser: this.getUser,
                     getUsers: this.getUsers,
                     addUser: this.addUser,
                     deleteUser: this.deleteUser,

@@ -24,7 +24,7 @@ import UserContact from './components/UserContact.js'
 
 class App extends Component {
     // eslint-disable-next-line
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
@@ -34,37 +34,42 @@ class App extends Component {
 
     render() {
         return (
-                <article>
-                    <header>
-                        {/* display only if logged in */}
-                        {(this.props.isLoggedIn === true) ? <MenuAdmin /> : ``}
-                        {/* display when (NOT logged in) || (when logged in AND previewMode===true) */}
-                        <MenuPortfolio />
-                    </header>
-                    
-                    <Switch>
-                    
-                        {/* Admin Routes */}
-                        <Route exact path='/' component={Welcome} />
-                        <Route exact path='/admin' render={rprops => !this.props.token ? <AuthLogin {...rprops}/> : <Redirect to={`/${this.props.user.username}/userinfo`}/>}/>
-                        <Route exact path='/admin/signup' render={rprops => !this.props.token ? <SignUp {...rprops}/> : <Redirect to={`/${this.props.user.username}/userinfo`}/>}/>
-                        <ProtectedRoute path="/:_username/categories" component={Categories}/>
-                        {/* <Route path='/:_userid/categories' component={Categories} /> */}
-                        <ProtectedRoute path='/:_username/portfolio' component={PortfolioItems} />
-                        <ProtectedRoute path='/:_username/userinfo' component={UserInfo} />
-                        
-                        {/* Portfolio Routes */}
-                        <Route path='/:_username' component={UserHomePage} />
-                        <Route path='/:_username/:_categoryid' component={UserCategory} />
-                        <Route path='/:_username/contact' component={UserContact} />
-                        
-                    </Switch>
-                    
-                    <footer>
-                        <Footer />
-                    </footer>
+            <article>
+                <header>
+                    {/* display only if logged in */}
+                    {(this.props.isLoggedIn === true) ? <MenuAdmin /> : ``}
+                    {/* display when (NOT logged in) || (when logged in AND previewMode===true) */}
+                    {(this.props.isPreview === true) ? <MenuPortfolio /> : ``}
+                </header>
+                <main>
+                    <div className="center">
+                        <Switch>
 
-                </article>
+                            {/* Admin Routes */}
+                            <Route exact path='/' component={Welcome} />
+                            <Route exact path='/admin' render={rprops => !this.props.token ? <AuthLogin {...rprops} /> : <Redirect to={`/${this.props.user.username}/userinfo`} />} />
+                            <Route exact path='/admin/signup' render={rprops => !this.props.token ? <SignUp {...rprops} /> : <Redirect to={`/${this.props.user.username}/userinfo`} />} />
+                            <ProtectedRoute path="/:_username/categories" component={Categories} />
+                            {/* <Route path='/:_userid/categories' component={Categories} /> */}
+                            <ProtectedRoute path='/:_username/portfolio' component={PortfolioItems} />
+                            <ProtectedRoute path='/:_username/userinfo' component={UserInfo} />
+
+                            {/* Portfolio Routes */}
+                            <Route path='/:_username' component={UserHomePage} />
+                            <Route path='/:_username/:_categoryid' component={UserCategory} />
+                            <Route path='/:_username/contact' component={UserContact} />
+
+                        </Switch>
+                    </div>
+                </main>
+
+                <footer>
+                    <div className="center">
+                        <Footer />
+                    </div>
+                </footer>
+
+            </article>
         )
     }
 }

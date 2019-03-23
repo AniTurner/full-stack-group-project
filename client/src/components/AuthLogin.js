@@ -41,7 +41,6 @@ class AuthLogin extends Component {
         
                     <input 
                         type="text"
-                        handleSubmit={this.handleSubmit}
                         onChange={this.handleChange} 
                         name="username"
                         value={this.state.username}
@@ -50,7 +49,6 @@ class AuthLogin extends Component {
                     <input 
                         type= "password"
                         name="password"
-                        handleSubmit={this.handleSubmit}
                         onChange={this.handleChange} 
                         value={this.state.password}
                     />

@@ -24,6 +24,11 @@ article {
     
 }
 
+.center {
+    width: 900px;
+    margin: 0 auto;
+}
+
 /* 
     HEADER ELEMENTS 
 */
@@ -160,9 +165,11 @@ input, select, option {
     padding: 10px 10px;
     font-weight: normal;
     width: 250px;
-    border-right: none;
+    margin-right: 10px;
 }
-
+input[type='checkbox'] {
+    width: 15px !important;
+}
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -177,7 +184,6 @@ select {
 button {
     background-color: #00C5BE;
     border: 1px solid silver;
-    border-left: none;
     color: #fff;
     font-size: 1em;
     padding: 10px 10px;
