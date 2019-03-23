@@ -26,6 +26,17 @@ portfolioItemRouter.get('/search', (req, res) => {
     })
 })
 
+// GET SINGLE PORTFOLIO ITEM BY ID
+portfolioItemRouter.get('/:_id', (req, res) => {
+    PortfolioItem.findOne({_id: req.params._id}, (err, userPortfolioItem) => {
+        if (err) {
+            res.status(500)
+            return next(err)
+        }
+        return res.status(200).send(userPortfolioItem)
+    })
+})
+
 // CREATE NEW CATEGORY PER USER WITH SPECIFIED CATEGORY
 portfolioItemRouter.post('/:userid/:categoryid', (req, res, next) => {
     const { userid, categoryid } = req.params
