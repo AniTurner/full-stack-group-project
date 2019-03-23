@@ -16,6 +16,7 @@ class BigDataProvider extends Component {
             currentPortfolioId: "",
             currentPortfolioItem: {
                 title: "",
+                _id: "",
                 imgTitle: "",
                 imgUrl: "",
                 description: "",
@@ -106,8 +107,40 @@ class BigDataProvider extends Component {
                 currentPortfolioItem: response.data,
                 currentPortfolioId: response.data._id,
                 allPortfolioItems: [...prevState.allPortfolioItems, response.data]
-            }), () => this.getAllUserData()
+            })
+                // , () => this.getAllUserData()
             )
+        })
+    }
+    getPortfolioItems = () => {
+        axios.get("/portfolio/v1").then(response => {
+            this.setState({
+                allPortfolioItems: response.data
+            })
+        })
+    }
+
+    getPortfolioItem = (_id) => {
+        axios.get(`/portfolio/v1/${_id}`).then(response => {
+            this.setState({
+                currentPortfolioItem: response.data
+            })
+        })
+    }
+
+    deletePortfolioItem = (_id) => {
+        axios.delete(`/portfolio/v1/${_id}`).then(response => {
+            this.setState(prevState => ({
+                allPortfolioItems: prevState.allPortfolioItems.filter(item => item._id !== _id)
+            }))
+        })
+    }
+
+    updatePortfolioItem = (_id, updates) => {
+        axios.put(`/portfolio/v1/${_id}`, updates).then(response => {
+            this.setState(prevState => ({
+                allPortfolioItems: prevState.allPortfolioItems.map(item => item._id === _id ? response.data : item)
+            }))
         })
     }
 
@@ -274,6 +307,10 @@ class BigDataProvider extends Component {
                     addUser: this.addUser,
                     deleteUser: this.deleteUser,
                     updateUser: this.updateUser,
+                    getPortfolioItems: this.getPortfolioItems,
+                    getPortfolioItem: this.getPortfolioItem,
+                    updatePortfolioItem: this.updatePortfolioItem,
+                    deletePortfolioItem: this.deletePortfolioItem,
                     isLoggedIn: this.state.isLoggedIn,
                     isPreview: this.state.isPreview,
                     user: this.state.user,
