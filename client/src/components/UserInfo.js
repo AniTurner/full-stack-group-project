@@ -7,13 +7,13 @@ class UserInfo extends Component {
     constructor(props){
         super(props)
         this.state = {
-            username: props.user.username,
-            firstName: props.user.firstName,
-            lastName: props.user.lastName,
-            aboutMe: props.user.aboutMe,
-            address: props.user.address,
-            phone: props.user.phone,
-            imgUrl: props.user.imgUrl
+            username: this.props.currentUser.username,
+            firstName: this.props.currentUser.firstName,
+            lastName: this.props.currentUser.lastName,
+            aboutMe: this.props.currentUser.aboutMe,
+            address: this.props.currentUser.address,
+            phone: this.props.currentUser.phone,
+            imgUrl: this.props.currentUser.imgUrl
         }
 
         this.modalElement = null
@@ -52,7 +52,8 @@ class UserInfo extends Component {
             imgUrl: this.state.imgUrl
         }
 
-        this.props.updateUser(this.props.user._id , userUpdate)
+        this.props.updateUser(this.props.currentUserId , userUpdate)
+        console.log('hi')
 
     }
     render(){
