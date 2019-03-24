@@ -18,7 +18,10 @@ class PortfolioItems extends Component {
             <main>
                 <div id="portfolio-edit-screen" className="center-crop">
                     <h2>Portfolio</h2>
-                    <AddEditPortfolioItemForm btnText="Save"/>
+                    <div className="add-form">
+                        <AddEditPortfolioItemForm btnText="Save"/>
+                    </div>
+
                     
                     {/* DISPLAY DIV ONLY IF PORTFOLIO ITEMS EXIST */}
                     <div id="portfolio-list">
