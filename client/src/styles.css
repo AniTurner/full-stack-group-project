@@ -303,6 +303,9 @@ button:first-of-type {
     right: 10px;
     cursor: pointer;
 }
+.add-form .close-button {
+    display: none;
+}
 
 /* PAGE SPECIFIC */
 #welcome-screen {
