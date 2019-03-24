@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
+const dataAxios = axios.create()
+
+dataAxios.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+})
 
 const BigDataContext = React.createContext()
 
@@ -10,8 +17,8 @@ class BigDataProvider extends Component {
         this.state = {
             newUsername: '',
             newCategory: '',
-            currentUser: {},
-            currentUserId: "",
+            // currentUser: {},
+            // currentUserId: "",
             currentCategory: {},
             currentPortfolioId: "",
             currentPortfolioItem: {
@@ -26,10 +33,45 @@ class BigDataProvider extends Component {
             allUsers: [],
             allCategories: [],
             allPortfolioItems: [],
-            token: "",
+            user: JSON.parse(localStorage.getItem("user")) || {},
+            token: localStorage.getItem("token") || "",
             isLoggedIn: ((localStorage.getItem('isLoggedIn')) === "true") || false,
             isPreview: false
         }
+    }
+
+    signup = (userInfo) => {
+        return axios.post("/auth/signup", userInfo).then(response => {
+            const { user, token } = response.data
+            localStorage.setItem('token', token);
+            localStorage.setItem("user", JSON.stringify(user));
+            this.setState({
+                user,
+                token
+            })
+            this.toggleLogin()
+            return response;
+        })
+    }
+
+    login = (credentials) => {
+        return axios.post('auth/login', credentials).then(response => {
+            const { token, user } = response.data
+            localStorage.setItem("token", token)
+            console.log(user)
+            localStorage.setItem("user", JSON.stringify(user))
+            this.setState({
+            //     currentCategory: response.data[0]
+            // })
+                user,
+                token
+            }, () => this.getCategories())
+
+            this.toggleLogin()
+            return response;
+
+        })
+
     }
 
     handleChange = (event) => {
@@ -67,8 +109,8 @@ class BigDataProvider extends Component {
         }
         axios.post("/user/v1", UserObj).then(response => {
             this.setState(prevState => ({
-                currentUser: response.data,
-                currentUserId: response.data._id,
+                user: response.data,
+                user_id: response.data._id,
                 isLoggedIn: true,
                 allUsers: [...prevState.allUsers, response.data]
             }), () => this.getAllUserData()
@@ -147,25 +189,26 @@ class BigDataProvider extends Component {
     // Requires UserID and category ID to get all user info
     getAllUserData = () => {
         // get all user's data
-        axios.get("/user/v1/" + this.state.currentUserId).then(response => {
+        //MIGHT NOT NEED DATAAXIOS IN FRONT OF GET
+        dataAxios.get("/api/user/v1/" + this.state.user._id).then(response => {
             console.log("getAllUserData: get by current user id firing")
             this.setState({
-                currentUser: response.data,
+                user: response.data,
                 isLoggedIn: true
             })
         })
 
         // get all user's categories
-        axios.get("/category/v1/byuserid/" + this.state.currentUserId).then(response => {
+        dataAxios.get("/api/category/v1/byuserid/" + this.state.user._id).then(response => {
             console.log("firing")
             this.setState({
                 allCategories: response.data
             },
                 () => {
                     // redirect to the users admin page
-                    this.props.history.push(`/${this.state.currentUser.username}/userinfo`)
+                    this.props.history.push(`/${this.state.user.username}/userinfo`)
                     // Save users id and logged in status to localStorage
-                    localStorage.setItem('currentUserID', this.state.currentUser._id)
+                    // localStorage.setItem('currentUserID', this.state.currentUser._id)
                     localStorage.setItem('isLoggedIn', this.state.isLoggedIn)
                 })
         })
@@ -189,6 +232,22 @@ class BigDataProvider extends Component {
         console.log(this.state.newCategory)
     }
 
+    handleChange = (event) => {
+        const { name, value } = event.target
+        this.setState({ [name]: value })
+    }
+
+    logout = () => {
+        localStorage.removeItem("user")
+        localStorage.removeItem("token")
+        this.setState({
+            user: {},
+            token: ''
+        })
+        this.toggleLogin()
+        this.togglePreview()
+    }
+
     //delete category
     deleteCategory = _id => {
         const answer = prompt(`Are you sure you want to delete ${this.state.currentCategory.title} ? `)
@@ -206,22 +265,30 @@ class BigDataProvider extends Component {
 
     toggleLogin = () => {
         // set state logged in to opposite of before
+        // set theme to opposite of previous theme
         this.setState(prevState => ({
             isLoggedIn: (prevState.isLoggedIn === true) ? false : true
         }))
 
-        // set localStorage logged in to opposite of before
-        localStorage.setItem("isLoggedIn", !(this.state.isLoggedIn))
+        // set localStorage theme to new theme
+        localStorage.setItem("isLoggedIn", prevState => ({
+            isLoggedIn: (prevState.isLoggedIn === true) ? true : false
+        }))
+
     }
 
     togglePreview = () => {
         // set preview mode to opposite of previous preview mode
+        // set theme to opposite of previous theme
+
         this.setState(prevState => ({
             isPreview: (prevState.isPreview === true) ? false : true
         }))
 
-        // set localStorage preview mode
-        localStorage.setItem("isPreview", !(this.state.isPreview))
+        // set localStorage theme to new theme
+        localStorage.setItem("isPreview", prevState => ({
+            isPreview: (prevState.isPreview === true) ? true : false
+        }))
     }
 
     // Get all users
@@ -273,7 +340,7 @@ class BigDataProvider extends Component {
     //Get All categories per specific user
     getCategories = () => {
         console.log(this.state.currentUserId)
-        axios.get(`/category/v1/byuserid/${this.state.currentUserId}`).then(response => {
+        dataAxios.get(`/api/category/v1/byuserid/${this.state.user._id}`).then(response => {
             this.setState({
                 allCategories: response.data
             })
@@ -314,7 +381,10 @@ class BigDataProvider extends Component {
                     isLoggedIn: this.state.isLoggedIn,
                     isPreview: this.state.isPreview,
                     user: this.state.user,
-                    token: this.state.token
+                    token: this.state.token,
+                    signup: this.signup,
+                    login: this.login,
+                    logout: this.logout,
                 }}>
                 {this.props.children}
             </BigDataContext.Provider>
