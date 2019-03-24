@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import SelectUserForm from './SelectUserForm.js'
-import AddUserLoginForm from './AddUserLoginForm.js'
+import AuthLogin from '../components/AuthLogin.js'
+import Signup from '../components/Signup.js'
 
 class Login extends Component {
 
@@ -29,14 +29,15 @@ class Login extends Component {
                 <div id="login-screen" className="center-crop">
                     {/* DISPLAY DIV ONLY IF USERS EXIST */}
                     <div>
-                        <h2>Select User</h2>
-                        <SelectUserForm />
+                        <h2>Login</h2>
+                        <AuthLogin />
+>
                     </div>
     
                     {/* ALWAYS DISPLAY */}
                     <div>
-                        <h2>Add New User</h2>
-                        <AddUserLoginForm />
+                        <h2>Sign up</h2>
+                        <Signup />
                     </div>
                 </div>
             </main>
