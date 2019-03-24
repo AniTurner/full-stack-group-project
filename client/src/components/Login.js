@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AuthLogin from '../components/AuthLogin.js'
 import Signup from '../components/Signup.js'
+import Toggle from '../shared/Toggle.js'
 
 class Login extends Component {
 
@@ -31,7 +32,7 @@ class Login extends Component {
                     <div>
                         <h2>Login</h2>
                         <AuthLogin />
->
+
                     </div>
     
                     {/* ALWAYS DISPLAY */}
@@ -39,6 +40,7 @@ class Login extends Component {
                         <h2>Sign up</h2>
                         <Signup />
                     </div>
+                    
                 </div>
             </main>
         )

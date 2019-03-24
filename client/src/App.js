@@ -42,10 +42,7 @@ class App extends Component {
             <Switch>
                 {/* Admin Routes */}
                 <Route exact path='/' render={rprops => !this.props.token ? <Welcome {...rprops} /> : <Redirect to={`/${this.props.user.username}/userinfo`} />} />
-                {/* <Route exact path='/admin' render={rprops => !this.props.token ? <Login {...rprops} /> : <Redirect to={`/${this.props.user.username}/userinfo`} />} /> */}
-                {/* <Route exact path='/admin/signup' render={rprops => !this.props.token ? <SignUp {...rprops} /> : <Redirect to={`/${this.props.user.username}/userinfo`} />} /> */}
                 <ProtectedRoute path="/:_username/categories" component={Categories} />
-                {/* <Route path='/:_userid/categories' component={Categories} /> */}
                 <ProtectedRoute path='/:_username/portfolio' component={PortfolioItems} />
                 <ProtectedRoute path='/:_username/userinfo' component={UserInfo} />
 
