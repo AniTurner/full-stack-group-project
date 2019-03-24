@@ -50,6 +50,7 @@ class BigDataProvider extends Component {
                 token
             })
             this.toggleLogin()
+            this.togglePreview()
             return response;
         })
     }
@@ -68,6 +69,7 @@ class BigDataProvider extends Component {
             }, () => this.getCategories())
 
             this.toggleLogin()
+            this.togglePreview()
             return response;
 
         })

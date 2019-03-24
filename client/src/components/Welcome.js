@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { withListData } from '../context/BigDataProvider.js'
 import Login from '../components/Login.js'
 import { Switch, Route, Redirect } from 'react-router-dom'

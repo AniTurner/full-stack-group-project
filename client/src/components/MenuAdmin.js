@@ -17,7 +17,7 @@ class MenuAdmin extends Component {
         return (
             <div className="center-crop">
                 <div role="navigation" id="admin-nav">
-                <li className="tab"><Link to={`/${user.username}/categories`}><div></div>Categories</Link></li>
+                    <li className="tab"><Link to={`/${user.username}/categories`}><div></div>Categories</Link></li>
                     <li className="tab"><Link to={`/${user.username}/portfolio`}><div></div>Portfolio</Link></li>
                     <li className="tab"><Link to={`/${user.username}/userinfo`}><div></div>User Info</Link></li>
                     <li className="tab"><Link to={`/${user.username}`} onClick={togglePreview}><div></div>Preview</Link></li>
