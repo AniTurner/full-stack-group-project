@@ -1,19 +1,12 @@
-const express = require('express');
-const mongoose = require('mongoose')
-const expressJwt = require("express-jwt");
+const express = require('express')
+const app = express()
 const morgan = require('morgan')
+const mongoose = require('mongoose')
 const PORT = process.env.PORT || 7000;
-const app = express();
-require("dotenv").config();
 
 // Middlewares for every request
 app.use(express.json())
 app.use(morgan('dev'))
-app.use("/auth", require("./routes/auth"));
-app.use("/todo", require("./routes/todo.js"));
-
-// Make the app use the express-jwt authentication middleware on anything starting with "/api"
-app.use("/api", expressJwt({secret: process.env.SECRET}));
 
 // Middlewares for every request
 mongoose.connect("mongodb://localhost:27017/attache", {useNewUrlParser: true}, () => {
@@ -21,17 +14,13 @@ mongoose.connect("mongodb://localhost:27017/attache", {useNewUrlParser: true}, (
 })
 
 // Routes
-app.use('/api/user/v1', require('./routes/userRoutes.js'))
-app.use('/api/category/v1', require('./routes/categoryRoutes.js'))
-app.use('/api/portfolio/v1', require('./routes/portfolioRoutes.js'))
+app.use('/user/v1', require('./routes/userRoutes.js'))
+app.use('/category/v1', require('./routes/categoryRoutes.js'))
+app.use('/portfolio/v1', require('./routes/portfolioRoutes.js'))
 
 // Error handler
 app.use((err, req, res, next) => {
-    console.error(err);
-    if (err.name === "UnauthorizedError") {
-        // express-jwt gives the 401 status to the err object for us
-        res.status(err.status);
-    }
+    console.error(err)
     return res.send({errMsg: err.message})
 })
 
