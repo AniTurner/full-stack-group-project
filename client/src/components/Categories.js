@@ -16,7 +16,7 @@ class Categories extends Component {
                 
                     <div>
                         <h2>Add a new Category</h2>
-                        <AddCategoryForm />           
+                        <AddCategoryForm btnText="Add" />           
                     </div>
         
                     

@@ -21,24 +21,38 @@ class PortfolioItem extends Component {
     render() {
         const { title, imgTitle, imgUrl, description, link, _id, isFeatured } = this.props
         return (
-            <div key={_id}  className="portfolio-item">
+            <div key={_id} className="portfolio-item">
                 {!this.state.editToggle ?
-                    <>
-                        <img src={imgUrl} alt={imgTitle} width={150} />
-                        <h2>{title}</h2>
-                        <p>Image alt text: {imgTitle}</p>
-                        {(description) ? <p>{description}</p> : ""}
-                        {(link) ? <p><a href={link}>{link}</a></p> : ""}
-                        <p>{(isFeatured) ? "Featured on the home page" : "Not featured"}</p>
-                        <button className="delete" onClick={() => this.props.deletePortfolioItem(_id)}>Delete</button>
-                        <button className="edit" onClick={this.toggler}>Edit</button>
-                    </>
+                    <div className="card">
+                        <div>
+                            <div>
+                                <img src={imgUrl} alt={imgTitle} width={300} />
+                            </div>
+                            <div>
+                                <div className="bottom-buttons">
+                                    <div>
+                                        <h3>{title}</h3>
+                                    </div>
+                                    <div>
+                                        {(description) ? <p><span className="text-italic">{description}</span></p> : ""}
+                                        <p>Image alt text: {imgTitle}</p>
+                                        {(link) ? <p>Links to: <a href={link}>{link}</a></p> : ""}
+                                        <p>{(isFeatured) ? "Featured on the home page" : "Not featured"}</p>
+                                    </div>
+                                    <div>
+                                        <button className="delete" onClick={() => this.props.deletePortfolioItem(_id)}>Delete</button>
+                                        <button className="edit" onClick={this.toggler}>Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     :
                     <>
-                        <div onClick={this.toggler}><span className="hidden">Close</span></div>
                         <AddEditPortfolioItemForm
                             handleChange={this.handleChange}
                             handleSubmit={this.handleSubmit}
+                            toggler={this.toggler}
                             btnText="Submit Edit"
                             {...this.state}
                         />

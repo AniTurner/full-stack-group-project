@@ -34,7 +34,6 @@ class PortfolioItems extends Component {
             </main>
         )
     }
-    
 }
 
 export default withListData(PortfolioItems)

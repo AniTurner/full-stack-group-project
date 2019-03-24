@@ -23,6 +23,25 @@ article {
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
+a {
+    color: rgb(0, 106, 102);
+    text-decoration: none;
+    transition: all 0.3ms ease-in;
+}
+
+a:hover {
+    color: #d71d02;
+}
+.text-bold {
+    font-weight: 800;
+}
+.text-italic {
+    font-style: italic;
+}
+.gray {
+    color: gray;
+}
+
 .center-crop {
     width: 900px;
     margin: 0 auto;
@@ -70,7 +89,7 @@ header {
     list-style: none;
     flex-direction: row;
     font-size: 12pt;
-    justify-content: start;
+    justify-content: flex-start;
     transition: all 0.3s ease;
 }
 
@@ -128,6 +147,12 @@ main {
 
 h2 {
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+h3 {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    color: #717171;
 }
 
 /* FOOTER ELEMENTS */
@@ -152,6 +177,45 @@ footer a:hover {
 /* FORM STYLES */
 
 /* Fields */
+
+form, .card {
+    position: relative;
+    margin: .5rem 0 1rem 0;
+    padding: 20px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 2px;
+}
+
+form > div:last-child, .card > div {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-gap: 20px;
+}
+
+.card .bottom-buttons {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-gap: 20px;
+    height: 100%;
+    grid-template-columns: 100%;
+
+}
+form .form-fields {
+    grid-template-columns: auto 1fr;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto;
+    grid-gap: 20px;
+    height: 100%;
+    /* grid-template-columns: 100%; */
+}
+form .form-fields button {
+}
 
 ::-webkit-input-placeholder {
     /* WebKit, Blink, Edge */
@@ -180,8 +244,6 @@ footer a:hover {
     color: #aaa;
 }
 
-/* Inputs */
-
 input, select, option {
     background-color: white;
     border: 1px solid silver;
@@ -189,11 +251,19 @@ input, select, option {
     padding: 10px 10px;
     font-weight: normal;
     width: 250px;
-    margin-right: 10px;
+    position: relative;
+    float: left;
 }
 
 input[type='checkbox'] {
-    width: 15px !important;
+    clear: left;
+    display: inline-block;
+    width: auto;
+    margin-right: 10px;
+}
+label {
+    margin-right: 20px;
+    float: left;
 }
 
 select {
@@ -216,6 +286,22 @@ button {
     width: 150px;
     text-transform: uppercase;
     font-weight: normal;
+    margin-left: 20px;
+}
+button:first-of-type {
+    margin-left: 0px;
+}
+.close-button {
+    width: 20px;
+    background: url('./gfx/close-button.png');
+    background-size: cover;
+    background-repeat: none;
+    background-position: center;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
 }
 
 /* PAGE SPECIFIC */
@@ -233,6 +319,4 @@ button {
     color: white;
     font-size: 70px;
     letter-spacing: 10px;
-    
 }
-
