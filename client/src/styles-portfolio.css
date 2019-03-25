@@ -1,12 +1,11 @@
 .cutout-text {
-    font: bolder 15vw 'Montserrat';
+    font: bolder 12vw 'Montserrat';
     text-align: center;
     margin: 0;
     background: url("https://source.unsplash.com/random") center;
     background-size: contain;
     margin: auto;
     margin-top: 100px;
-    width: 75vw;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -38,7 +37,6 @@
 }
 
 #portfolio-home {
-    
     position: relative;
     text-align: center;
     z-index: 2;
@@ -46,7 +44,6 @@
 
 #portfolio-home div {
     background-color: rgb(255, 255, 255);
-    
 }
 
 #portfolio-home h1 {
@@ -56,4 +53,26 @@
     letter-spacing: 5px;
     text-shadow: 0 0 10px #000000;
     margin: 20px;
+}
+
+#portfolio-contact-screen {
+    line-height: 2.5;
+}
+
+#portfolio-contact-screen img {
+    width: 250px;
+    height: 250px;
+    float: left;
+    border-radius: 200px;
+    margin: 40px 0 0 40px;
+}
+#portfolio-contact-screen .card {
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: 100%;
+}
+#portfolio-contact-screen .card > div {
+    display: grid;
+    grid-template-columns: 1fr;
 }
