@@ -18,7 +18,7 @@ const customStyles = {
     }
   };
 
-Modal.setAppElement() //it is asking to put down (el) but el is not defined??
+// Modal.setAppElement(document.getElementById("modal")) //it is asking to put down (el) but el is not defined??
 
 
 class Welcome extends Component {
@@ -68,6 +68,7 @@ class Welcome extends Component {
                             {(this.state.modalIsOpen === true)
                             ?
                             <Modal
+                                ariaHideApp={false}
                                 isOpen={this.state.modalIsOpen}
                                 onAfterOpen={this.afterOpenModal}
                                 onRequestClose={this.closeModal}

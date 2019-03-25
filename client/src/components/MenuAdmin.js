@@ -8,7 +8,7 @@ class MenuAdmin extends Component {
         super(props)
     }
     componentDidMount = () => {
-        this.props.getUser(this.props.currentUserId)
+        // this.props.getUser(this.props.currentUserId)
     }
 
     render() {

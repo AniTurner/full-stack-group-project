@@ -1,17 +1,22 @@
-import React, {Component} from 'react'
-import {withListData} from '../context/BigDataProvider.js'
+import React, { Component } from 'react'
+import { withListData } from '../context/BigDataProvider.js'
 import { Link } from 'react-router-dom'
 
 
 
 class Signup extends Component {
-    constructor(){
+    constructor() {
         super()
         this.state = {
             username: '',
             password: '',
             firstName: "",
             lastName: "",
+            imgUrl: "",
+            aboutMe: "",
+            email: "",
+            address: "",
+            phone: "",
             errorMessage: ""
 
         }
@@ -23,6 +28,11 @@ class Signup extends Component {
             password: "",
             firstName: "",
             lastName: "",
+            imgUrl: "",
+            aboutMe: "",
+            email: "",
+            address: "",
+            phone: "",
             errorMessage: ""
         })
     }
@@ -35,54 +45,92 @@ class Signup extends Component {
     handleSubmit = event => {
         event.preventDefault()
         this.props.signup(this.state)
-            .then(() => '' )
+            .then(() => '')
             .catch(err => {
-                this.setState({errorMessage: err.response.data.errMsg})
+                this.setState({ errorMessage: err.response.data.errMsg })
             })
 
     }
 
 
 
-    render(){
+    render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input 
-                        type= "text"
-                        name="firstName"
-                        onChange={this.handleChange} 
-                        value={this.state.firstName}
-                        placeholder="First Name"
-                    />
 
-                <input 
-                    type= "text"
+
+
+                <input
+                    type="text"
+                    name="aboutMe"
+                    onChange={this.handleChange}
+                    value={this.state.aboutMe}
+                    placeholder="About Me"
+                />
+                <input
+                    type="text"
+                    name="address"
+                    onChange={this.handleChange}
+                    value={this.state.address}
+                    placeholder="address"
+                />
+                <input
+                    type="text"
+                    name="phone"
+                    onChange={this.handleChange}
+                    value={this.state.phone}
+                    placeholder="phone"
+                />
+                <input
+                    type="text"
+                    name="email"
+                    onChange={this.handleChange}
+                    value={this.state.email}
+                    placeholder="email address"
+                />
+                <input
+                    type="text"
+                    name="imgUrl"
+                    onChange={this.handleChange}
+                    value={this.state.imgUrl}
+                    placeholder="image"
+                />
+                <input
+                    type="text"
+                    name="firstName"
+                    onChange={this.handleChange}
+                    value={this.state.firstName}
+                    placeholder="First Name"
+                />
+
+                <input
+                    type="text"
                     name="lastName"
-                    onChange={this.handleChange} 
+                    onChange={this.handleChange}
                     value={this.state.lastName}
                     placeholder="Last Name"
                 />
 
-                <input 
+                <input
                     type="text"
-                    onChange={this.handleChange} 
+                    onChange={this.handleChange}
                     name="username"
                     value={this.state.username}
                     placeholder="username"
                 />
 
-                <input 
+                <input
                     name="password"
                     type="password"
-                    onChange={this.handleChange} 
+                    onChange={this.handleChange}
                     value={this.state.password}
                     placeholder="password"
                 />
 
 
                 <button>Signup</button>
-                {this.state.errorMessage && <p style={{color: "red"}}>{this.state.errorMessage}</p>}
-                
+                {this.state.errorMessage && <p style={{ color: "red" }}>{this.state.errorMessage}</p>}
+
             </form>
 
         )

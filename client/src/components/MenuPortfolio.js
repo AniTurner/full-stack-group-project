@@ -6,14 +6,14 @@ class MenuPortfolio extends Component {
 
     render() {
         const { user, token, togglePreview, login, isLoggedIn } = this.props
-
+        console.log(token)
         return (
             <div className="center-crop">
                 <div role="navigation" id="portfolio-nav">
                     <li className="tab"><Link to={`/${user.username}`}>Home</Link></li>
                     {/* Map out all categories with their links here */}
                     <li className="tab"><Link to={`/${user.username}/contact`}>Contact</Link></li>
-                    {(isLoggedIn === true) 
+                    {(token) 
                     ? <li className="tab"><Link to={`/${user.username}/userinfo`} onClick={togglePreview}>Admin</Link></li>
                     : <li className="tab"><Link to={"/"} onClick={login}>Log In</Link></li>
                     }

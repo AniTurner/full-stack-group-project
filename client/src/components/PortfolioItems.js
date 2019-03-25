@@ -69,7 +69,7 @@ class PortfolioItems extends Component {
                     {/* Map over here */}
                     { this.props.allPortfolioItems.map(item => 
                     <>
-                            {(item.userId === this.props.currentUserId) 
+                            {(item.userId === this.props.user._id) 
                             ?
                                 <PortfolioItem 
                                 key={item._id} 
