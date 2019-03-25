@@ -10,6 +10,8 @@ class Signup extends Component {
         this.state = {
             username: '',
             password: '',
+            firstName: "",
+            lastName: "",
             errorMessage: ""
 
         }
@@ -19,6 +21,8 @@ class Signup extends Component {
         this.setState({
             username: "",
             password: "",
+            firstName: "",
+            lastName: "",
             errorMessage: ""
         })
     }
@@ -43,6 +47,22 @@ class Signup extends Component {
     render(){
         return (
             <form onSubmit={this.handleSubmit}>
+                <input 
+                        type= "text"
+                        name="firstName"
+                        onChange={this.handleChange} 
+                        value={this.state.firstName}
+                        placeholder="First Name"
+                    />
+
+                <input 
+                    type= "text"
+                    name="lastName"
+                    onChange={this.handleChange} 
+                    value={this.state.lastName}
+                    placeholder="Last Name"
+                />
+
                 <input 
                     type="text"
                     onChange={this.handleChange} 
