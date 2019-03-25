@@ -5,7 +5,9 @@ import { withListData } from '../context/BigDataProvider.js'
 class MenuPortfolio extends Component {
 
     render() {
-        const { currentUser, isLoggedIn, togglePreview } = this.props
+        const { currentUser, isLoggedIn, togglePreview , allCategories } = this.props
+        console.log(allCategories)
+        
 
         return (
             <div className="center-crop">
@@ -13,6 +15,11 @@ class MenuPortfolio extends Component {
                     <li className="tab"><Link to={`/${currentUser.username}`}>Home</Link></li>
                     {/* Map out all categories with their links here */}
                     {/* <Route path='/:_username/cat/:_categoryid' component={UserCategory} /> */}
+                    {
+                        allCategories.map(category => 
+                            <li className="tab"><Link to={`/${currentUser.username}/cat/${category._id}`}>{category.title}</Link></li>
+                        )
+                    }
                     <li className="tab"><Link to={`/${currentUser.username}/contact`}>Contact</Link></li>
                     
                     {(isLoggedIn === true) 
