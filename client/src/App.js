@@ -48,10 +48,10 @@ class App extends Component {
                                 <Route path='/:_username/userinfo' component={UserInfo} />
                                 
                                 {/* Portfolio Routes */}
-                                <Route path='/:_username' component={UserHomePage} />
-                                <Route path='/:_username/:_categoryid' component={UserCategory} />
-                                <Route path='/:_username/contact' component={UserContact} />
-                                
+                                <Route exact path='/:_username' component={UserHomePage} />
+                                <Route exact path='/:_username/contact' component={UserContact} />
+                                <Route exact path='/:_username/cat/:_categoryid' component={UserCategory} />
+                                                                
                             </Switch>
                     
                     <footer>
