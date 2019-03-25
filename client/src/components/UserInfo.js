@@ -7,13 +7,14 @@ class UserInfo extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: this.props.currentUser.username,
-            firstName: this.props.currentUser.firstName,
-            lastName: this.props.currentUser.lastName,
-            aboutMe: this.props.currentUser.aboutMe,
-            address: this.props.currentUser.address,
-            phone: this.props.currentUser.phone,
-            imgUrl: this.props.currentUser.imgUrl
+            username: props.user.username,
+            firstName: props.user.firstName,
+            lastName: props.user.lastName,
+            aboutMe: props.user.aboutMe,
+            address: props.user.address,
+            phone: props.user.phone,
+            imgUrl: props.user.imgUrl,
+            email: props.user.email
         }
 
         this.modalElement = null
@@ -49,15 +50,16 @@ class UserInfo extends Component {
             aboutMe: this.state.aboutMe,
             address: this.state.address,
             phone: this.state.phone,
-            imgUrl: this.state.imgUrl
+            imgUrl: this.state.imgUrl,
+            email: this.state.email
         }
 
-        this.props.updateUser(this.props.currentUserId, userUpdate)
+        this.props.updateUser(this.props.user._id , userUpdate)
         console.log('hi')
 
     }
     render() {
-        console.log(this.props)
+        console.log(this.props.user)
         return (
             <main>
                 <div id="user-info-edit-screen" className="center-crop">
@@ -84,6 +86,8 @@ class UserInfo extends Component {
                             <input type="text" name="address" value={this.state.address ? this.state.address : ""} placeholder="Address" onChange={this.handleChange} />
                             {/* <label>Phone Number:</label> */}
                             <input type="number" name="phone" value={this.state.phone ? this.state.phone : ""} placeholder="Phone" onChange={this.handleChange} />
+                            <input type="email" name="email" value={this.state.email ? this.state.email : ""} placeholder="Email Address" onChange={this.handleChange} />
+
                         </div>
                         <div>
                             <button>Save</button>

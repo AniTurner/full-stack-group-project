@@ -225,7 +225,9 @@ form .form-fields {
     /* grid-template-columns: 100%; */
 }
 
-form .form-fields button {}
+form .form-fields button {
+    
+}
 
 ::-webkit-input-placeholder {
     /* WebKit, Blink, Edge */

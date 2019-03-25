@@ -53,6 +53,7 @@ userRouter.delete('/:_id', (req, res) => {
 
 // PUT
 userRouter.put('/:_id', (req, res) => {
+    console.log(req.body)
     User.findOneAndUpdate(
         { _id: req.params._id },
         req.body,
