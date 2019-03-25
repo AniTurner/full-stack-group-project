@@ -6,7 +6,13 @@ class PortfolioItem extends Component {
     constructor(props) {
         super(props)
         this.state = {
-
+            editToggle: false,
+            title: props.title,
+            imgTitle: props.imgTitle,
+            imgUrl: props.imgUrl,
+            description: props.description ,
+            link: props.link ,
+            isFeatured: props.isFeatured 
         }
     }
 
@@ -15,11 +21,35 @@ class PortfolioItem extends Component {
         this.setState(prevState => ({
             editToggle: !prevState.editToggle
         }))
-        
+
+    }
+
+    handleChange = e => {
+        // const {name, type} = e.target
+        const value = e.target.type === "checkbox" ? e.target.checked:
+                        e.target.value
+        this.setState(({
+            [e.target.name]: value
+        }))
+    }
+
+    handleSubmit = e => {
+        e.preventDefault()
+        const PortfolioUpdate = {
+            title: this.state.title,
+            imgTitle: this.state.imgTitle,
+            imgUrl: this.state.imgUrl,
+            description: this.state.description || '',
+            link: this.state.link || '',
+            isFeatured: this.state.isFeatured || false
+        }
+        this.props.updatePortfolioItem(this.props._id,PortfolioUpdate)
+        this.toggler()
     }
 
     render() {
-        const { title, imgTitle, imgUrl, description, link, _id, isFeatured } = this.props
+        // console.log(this.props)
+        const { title, imgTitle, imgUrl, description, link, _id, isFeatured , userId} = this.props
         return (
             <div key={_id} className="portfolio-item">
                 {!this.state.editToggle ?
