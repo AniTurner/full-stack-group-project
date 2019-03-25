@@ -16,7 +16,7 @@ class UserHomePage extends Component {
 
                         {this.props.allPortfolioItems.map(item =>
                             <>
-                                {(item.userId === this.props.currentUser._id)
+                                {(item.userId === this.props.currentUser._id && item.isFeatured)
                                     ?
                                     <UserHomePageItem
                                         key={item._id}
