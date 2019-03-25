@@ -1,11 +1,12 @@
 import React from 'react'
+import './../styles-portfolio.css'
 
 const UserHomePage = () => {
     return(
         <main>
             <div id="portfolio-home" className="center-crop">
-                <h2>Home Page</h2>
-                <div>Clickable Featured Portfolio Items Here</div>
+                <div className="cutout-text">Portfolio</div>
+                <h1>Olivia Meiring</h1>
             </div>
         </main>
     )

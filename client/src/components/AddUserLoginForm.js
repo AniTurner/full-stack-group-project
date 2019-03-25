@@ -11,7 +11,7 @@ const AddUserLoginForm = (props) => {
                 onChange={props.handleChange}
                 placeholder="username"
                 required />
-            <button>Sign Up</button>
+            <button>Go</button>
         </form>
     )
 }
