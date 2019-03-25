@@ -3,6 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom'
 import { withListData } from './context/BigDataProvider.js'
 
 import './styles.css'
+import './styles-portfolio.css'
 
 import MenuAdmin from './components/MenuAdmin.js'
 import MenuPortfolio from './components/MenuPortfolio.js'

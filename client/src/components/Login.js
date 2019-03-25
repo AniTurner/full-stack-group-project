@@ -29,13 +29,13 @@ class Login extends Component {
                 <div id="login-screen" className="center-crop">
                     {/* DISPLAY DIV ONLY IF USERS EXIST */}
                     <div>
-                        <h2>Select User</h2>
+                        <h2>Login</h2>
                         <SelectUserForm />
                     </div>
     
                     {/* ALWAYS DISPLAY */}
                     <div>
-                        <h2>Add New User</h2>
+                        <h2>Sign Up</h2>
                         <AddUserLoginForm />
                     </div>
                 </div>
