@@ -1,4 +1,5 @@
 import React from 'react'
+import { withListData } from '../context/BigDataProvider.js'
 const CategoryDropdown  = (props) =>  {
     
         return (
@@ -13,4 +14,4 @@ const CategoryDropdown  = (props) =>  {
         )
 }
 
-export default CategoryDropdown
+export default withListData(CategoryDropdown)

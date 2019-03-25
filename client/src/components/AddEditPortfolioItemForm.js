@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withListData } from '../context/BigDataProvider.js'
+// import { withListData } from '../context/BigDataProvider.js'
 import CategoryDropdown from './CategoryDropdown.js'
 
 class AddEditPortfolioItemForm extends Component {
@@ -11,14 +11,14 @@ class AddEditPortfolioItemForm extends Component {
 
     render() {
         return (
-            <form className="portfolio-form" onSubmit={this.props.handlePortfolioSubmit}>
+            <form className="portfolio-form" onSubmit={this.props.handleSubmit}>
                 <div className="close-button" onClick={this.props.toggler}><span className="hidden">Close</span></div>
                 <div>
 
                     <div>
-                        {(!this.props.currentPortfolioItem.imgUrl) 
+                        {(!this.props.imgUrl) 
                         ? <img src='https://www.agora-gallery.com/advice/wp-content/uploads/2015/10/image-placeholder.png' alt='placeholder' width={300} />
-                        : <img src={this.props.currentPortfolioItem.imgUrl} alt="" width={300} />
+                        : <img src={this.props.imgUrl} alt="" width={300} />
                         }
                         
                     </div>
@@ -26,51 +26,51 @@ class AddEditPortfolioItemForm extends Component {
                     <div className="form-fields">
                         <input
                             type="text"
-                            value={this.props.currentPortfolioItem.title}
-                            onChange={this.props.handlePortfolioChange}
+                            value={this.props.title}
+                            onChange={this.props.handleChange}
                             name="title"
                             placeholder="Title"
                             required />
                         <input
                             type="text"
-                            value={this.props.currentPortfolioItem.imgUrl}
-                            onChange={this.props.handlePortfolioChange}
+                            value={this.props.imgUrl}
+                            onChange={this.props.handleChange}
                             name="imgUrl"
                             placeholder="Image URL"
                             required />
                         <input
                             type="text"
-                            value={this.props.currentPortfolioItem.imgTitle}
-                            onChange={this.props.handlePortfolioChange}
+                            value={this.props.imgTitle}
+                            onChange={this.props.handleChange}
                             name="imgTitle"
                             placeholder="Image Title"
                             required />
                         <input
                             type="text"
-                            value={this.props.currentPortfolioItem.description}
-                            onChange={this.props.handlePortfolioChange}
+                            value={this.props.description}
+                            onChange={this.props.handleChange}
                             name="description"
                             placeholder="Description"
                             required />
                         <input
                             type="text"
-                            value={this.props.currentPortfolioItem.link}
-                            onChange={this.props.handlePortfolioChange}
+                            value={this.props.link}
+                            onChange={this.props.handleChange}
                             name="link"
                             placeholder="Link URL"
                             required />
 
-                        < CategoryDropdown handleCategoryChange={this.props.handleCategoryChange} allCategories={this.props.allCategories} />
+                        < CategoryDropdown />
 
-                        <button>Save</button>
+                        <button>{this.props.btnText}</button>
                         
                         <div>
                             <input
                                 type="checkbox"
-                                value={this.props.currentPortfolioItem.isFeatured}
-                                onChange={this.props.handlePortfolioChange}
+                                // value={this.props.isFeatured}
+                                onChange={this.props.handleChange}
                                 name="isFeatured"
-                                checked={this.props.currentPortfolioItem.isFeatured}
+                                checked={this.props.isFeatured}
                             />
                             <label>Featured on home page</label>
                         </div>
@@ -84,4 +84,4 @@ class AddEditPortfolioItemForm extends Component {
     }
 }
 
-export default withListData(AddEditPortfolioItemForm)
+export default AddEditPortfolioItemForm
