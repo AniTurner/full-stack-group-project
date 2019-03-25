@@ -297,6 +297,7 @@ class BigDataProvider extends Component {
                     getCategories: this.getCategories,
                     addUser: this.addUser,
                     deleteUser: this.deleteUser,
+                    deleteCategory: this.deleteCategory,
                     updateUser: this.updateUser,
                     addPortfolioItems: this.addPortfolioItems,
                     getPortfolioItems: this.getPortfolioItems,
