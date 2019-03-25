@@ -1,15 +1,43 @@
-import React from 'react'
-import './../styles-portfolio.css'
+import React, { Component } from 'react'
+import UserHomePageItem from './UserHomePageItem.js'
+import { withListData } from '../context/BigDataProvider.js'
 
-const UserHomePage = () => {
-    return(
-        <main>
-            <div id="portfolio-home" className="center-crop">
-                <div className="cutout-text">Portfolio</div>
-                <h1>Olivia Meiring</h1>
-            </div>
-        </main>
-    )
+class UserHomePage extends Component {
+    componentDidMount = () => {
+        this.props.getPortfolioItems()
+    }
+    
+    render() {
+
+        return (
+            <main>
+                <div id="portfolio-background">
+                    <div className="portflio-cols-3">
+
+                        {this.props.allPortfolioItems.map(item =>
+                            <>
+                                {(item.userId === this.props.currentUser._id && item.isFeatured)
+                                    ?
+                                    <UserHomePageItem
+                                        key={item._id}
+                                        {...item}
+                                    />
+                                    :
+                                    null
+                                } 
+                            </>
+                        )
+                        }
+
+                    </div>
+                </div>
+                <div id="portfolio-home" className="center-crop">
+                    <div><div className="cutout-text">Portfolio</div></div>
+                    <h1>{this.props.currentUser.firstName} {this.props.currentUser.lastName}</h1>
+                </div>
+            </main>
+        )
+    }
 }
 
-export default UserHomePage
+export default withListData(UserHomePage)

@@ -24,3 +24,4 @@ class MenuPortfolio extends Component {
 }
 
 export default withListData(MenuPortfolio)
+
