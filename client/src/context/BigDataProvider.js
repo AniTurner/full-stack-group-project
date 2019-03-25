@@ -261,7 +261,7 @@ class BigDataProvider extends Component {
         })
     }
 
-    //Get All categories per specific user
+    // Get All categories per specific user
     getCategories = () => {
         console.log(this.state.currentUserId)
         axios.get(`/category/v1/byuserid/${this.state.currentUserId}`).then(response => {
