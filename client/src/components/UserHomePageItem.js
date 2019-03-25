@@ -11,7 +11,7 @@ class PortfolioItem extends Component {
         return (
 
             <div key={_id} className="portfolio-item" style={{ backgroundImage: `url(${imgUrl}` }}>
-                <Link to={`/${this.props.currentUser.username}/cat/${link}`}></Link>
+                <Link to={`/${this.props.user.username}/cat/${link}`}></Link>
             </div>
 
         )
