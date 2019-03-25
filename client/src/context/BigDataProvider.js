@@ -92,16 +92,7 @@ class BigDataProvider extends Component {
     }
 
     // Add edit portfolio item
-    handlePortfolioSubmit = (event) => {
-        event.preventDefault()
-        const PortfolioObj = {
-            "title": this.state.currentPortfolioItem.title,
-            "imgTitle": this.state.currentPortfolioItem.imgTitle,
-            "imgUrl": this.state.currentPortfolioItem.imgUrl,
-            "description": this.state.currentPortfolioItem.description || '',
-            "link": this.state.currentPortfolioItem.link || '',
-            "isFeatured": this.state.currentPortfolioItem.isFeatured || false
-        }
+    addPortfolioItems = (PortfolioObj) => {
         axios.post(`/portfolio/v1/${this.state.currentUserId}/${this.state.currentCategory._id}`, PortfolioObj).then(response => {
             this.setState(prevState => ({
                 currentPortfolioItem: response.data,
@@ -307,6 +298,7 @@ class BigDataProvider extends Component {
                     addUser: this.addUser,
                     deleteUser: this.deleteUser,
                     updateUser: this.updateUser,
+                    addPortfolioItems: this.addPortfolioItems,
                     getPortfolioItems: this.getPortfolioItems,
                     getPortfolioItem: this.getPortfolioItem,
                     updatePortfolioItem: this.updatePortfolioItem,
