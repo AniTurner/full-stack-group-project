@@ -183,17 +183,18 @@ class BigDataProvider extends Component {
             console.log(response.data)
             this.setState(prevState => ({
                 allCategories: [...prevState.allCategories, response.data]
+                
             }))
         })
-
-        console.log(this.state.newCategory)
+        
+        // console.log(this.state.newCategory)
     }
 
     //delete category
     deleteCategory = _id => {
         const answer = prompt(`Are you sure you want to delete ${this.state.currentCategory.title} ? `)
         if (answer === 'yes') {
-            axios.delete("/category/v1/" + _id).then(response => {
+            axios.delete(`/category/v1/${_id}`).then(response => {
                 console.log(response.data._id)
                 this.setState(prevState => ({
                     allCategories: prevState.allCategories.filter(category => category._id !== _id)
@@ -307,6 +308,7 @@ class BigDataProvider extends Component {
                     addUser: this.addUser,
                     deleteUser: this.deleteUser,
                     updateUser: this.updateUser,
+                    deleteCategory:this.deleteCategory,
                     getPortfolioItems: this.getPortfolioItems,
                     getPortfolioItem: this.getPortfolioItem,
                     updatePortfolioItem: this.updatePortfolioItem,
