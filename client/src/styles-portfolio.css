@@ -1,0 +1,22 @@
+.cutout-text {
+    font: bolder 15vw 'Montserrat';
+    text-align: center;
+    margin: 0;
+    background: url("https://source.unsplash.com/random") center;
+    background-size: contain;
+    margin: auto;
+    margin-top: 100px;
+    width: 75vw;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 8px;
+}
+
+#portfolio-home {
+    text-align: center;
+}
+#portfolio-home h1 {
+    font-size: 5vw;
+    color: silver;
+}

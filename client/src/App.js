@@ -4,6 +4,7 @@ import { withListData } from './context/BigDataProvider.js'
 import ProtectedRoute from "./components/ProtectedRoute";
 
 import './styles.css'
+import './styles-portfolio.css'
 
 import Login from './components/Login.js'
 import MenuAdmin from './components/MenuAdmin.js'
