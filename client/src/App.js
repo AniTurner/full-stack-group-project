@@ -27,6 +27,7 @@ class App extends Component {
     }
 
     componentDidMount = () => {
+        console.log(this.props.user._id)
         this.props.getUsers()
     }
 

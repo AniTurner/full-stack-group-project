@@ -238,7 +238,7 @@ class BigDataProvider extends Component {
             token: ''
         })
         this.toggleLogin()
-        this.togglePreview()
+        // this.togglePreview()
     }
 
     //delete category
@@ -332,7 +332,7 @@ class BigDataProvider extends Component {
         })
     }
 
-    //Get All categories per specific user
+    // Get All categories per specific user
     getCategories = () => {
         console.log(this.state.currentUserId)
         dataAxios.get(`/api/category/v1/byuserid/${this.state.user._id}`).then(response => {
