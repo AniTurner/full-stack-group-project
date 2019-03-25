@@ -69,7 +69,7 @@ class BigDataProvider extends Component {
             }, () => this.getCategories())
 
             this.toggleLogin()
-            this.togglePreview()
+            // this.togglePreview()
             return response;
 
         })
@@ -257,6 +257,7 @@ class BigDataProvider extends Component {
     }
 
     toggleLogin = () => {
+        console.log('login')
         // set state logged in to opposite of before
         // set theme to opposite of previous theme
         this.setState(prevState => ({
@@ -271,6 +272,7 @@ class BigDataProvider extends Component {
     }
 
     togglePreview = () => {
+        console.log('preview')
         // set preview mode to opposite of previous preview mode
         // set theme to opposite of previous theme
 
