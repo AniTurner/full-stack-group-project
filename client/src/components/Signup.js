@@ -48,6 +48,7 @@ class Signup extends Component {
                     onChange={this.handleChange} 
                     name="username"
                     value={this.state.username}
+                    placeholder="username"
                 />
 
                 <input 
@@ -55,6 +56,7 @@ class Signup extends Component {
                     type="password"
                     onChange={this.handleChange} 
                     value={this.state.password}
+                    placeholder="password"
                 />
 
 

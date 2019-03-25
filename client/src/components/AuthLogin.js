@@ -44,6 +44,7 @@ class AuthLogin extends Component {
                         onChange={this.handleChange} 
                         name="username"
                         value={this.state.username}
+                        placeholder="username"
                     />
 
                     <input 
@@ -51,6 +52,7 @@ class AuthLogin extends Component {
                         name="password"
                         onChange={this.handleChange} 
                         value={this.state.password}
+                        placeholder="password"
                     />
 
 
