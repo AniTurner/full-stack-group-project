@@ -11,7 +11,7 @@ class BigDataProvider extends Component {
             newUsername: '',
             newCategory: '',
             currentUser: {},
-            currentUserId: "",
+            currentUserId: '',
             currentCategory: {},
             currentPortfolioId: "",
             currentPortfolioItem: {
