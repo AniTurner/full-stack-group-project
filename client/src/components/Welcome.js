@@ -21,8 +21,6 @@ const customStyles = {
     }
 };
 
-// Modal.setAppElement(document.getElementById("modal")) //it is asking to put down (el) but el is not defined??
-
 
 class Welcome extends Component {
     constructor(props) {
@@ -67,10 +65,6 @@ class Welcome extends Component {
                     <div className="vertical-align-parent">
                         <PageFade location={this.location}>
                             <div className="vertical-align-child">
-
-                                <h1>&lt;tt&gt;ché</h1>
-
-                                <button onClick={() => { this.openModal() }}>Login / Signup</button>
                                 
                                 {(this.state.modalIsOpen === true)
                                     ?
@@ -80,13 +74,17 @@ class Welcome extends Component {
                                         onAfterOpen={this.afterOpenModal}
                                         onRequestClose={this.closeModal}
                                         style={customStyles}
-                                        contentLabel="Example Modal"
+                                        contentLabel="Login/Signup"
                                     >
                                         <Login />
                                         <div class="close-button" onClick={() => this.closeModal()}><span class="hidden">Close</span></div>
                                     </Modal>
                                     :
-                                    null
+                                    <>
+                                        <h1>&lt;tt&gt;ché</h1>
+
+                                        <button onClick={() => { this.openModal() }}>Login / Signup</button>
+                                    </>
                                 }
 
                                 {/* <Login />  */}

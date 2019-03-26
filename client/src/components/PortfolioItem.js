@@ -48,7 +48,6 @@ class PortfolioItem extends Component {
     }
 
     render() {
-        // console.log(this.props)
         const { title, imgTitle, imgUrl, description, link, _id, isFeatured , userId} = this.props
         return (
             <div key={_id} className="portfolio-item">
