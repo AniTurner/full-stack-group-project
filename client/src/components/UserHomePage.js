@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import UserHomePageItem from './UserHomePageItem.js'
 import { withListData } from '../context/BigDataProvider.js'
 
@@ -15,17 +15,16 @@ class UserHomePage extends Component {
                     <div className="portflio-cols-3">
 
                         {this.props.allPortfolioItems.map(item =>
-                            <>
+                            <Fragment key={item._id}>
                                 {(item.userId === this.props.user._id && item.isFeatured)
                                     ?
                                     <UserHomePageItem
-                                        key={item._id}
                                         {...item}
                                     />
                                     :
                                     null
                                 } 
-                            </>
+                            </Fragment>
                         )
                         }
 

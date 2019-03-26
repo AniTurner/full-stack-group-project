@@ -13,7 +13,7 @@ class MenuPortfolio extends Component {
                     <li className="tab"><Link to={`/${user.username}`}>Home</Link></li>
                     {
                         allCategories.map(category => 
-                            <li className="tab"><Link key={category._id} to={`/${user.username}/cat/${category._id}`}>{category.title}</Link></li>
+                            <li key={category._id} className="tab"><Link to={`/${user.username}/cat/${category._id}`}>{category.title}</Link></li>
                         )
                     }
                     <li className="tab"><Link to={`/${user.username}/contact`}>Contact</Link></li>

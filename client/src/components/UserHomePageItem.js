@@ -6,11 +6,11 @@ class PortfolioItem extends Component {
 
     render() {
 
-        const { imgUrl, link, _id } = this.props
+        const { imgUrl, link } = this.props
 
         return (
 
-            <div key={_id} className="portfolio-item" style={{ backgroundImage: `url(${imgUrl}` }}>
+            <div className="portfolio-item" style={{ backgroundImage: `url(${imgUrl}` }}>
                 <Link to={`/${this.props.user.username}/cat/${link}`}></Link>
             </div>
 
