@@ -5,7 +5,7 @@ import { withListData } from '../context/BigDataProvider.js'
 class MenuPortfolio extends Component {
 
     render() {
-        const { user, token, togglePreview, login, isLoggedIn, allCategories } = this.props
+        const { user, token, togglePreview, login, allCategories } = this.props
         console.log(token)
         return (
             <div className="center-crop">
