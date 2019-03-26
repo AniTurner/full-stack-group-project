@@ -329,7 +329,7 @@ button:first-of-type {
     background-position: center;
     transition: all 0.5s ease-in-out;
     text-align: center;
-    background: url("https://source.unsplash.com/collection/2569191/1600x900") center no-repeat;
+    background: url("https://source.unsplash.com/collection/2569191/800x600") center no-repeat;
     background-size: cover;
 }
 

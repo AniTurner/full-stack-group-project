@@ -6,7 +6,7 @@
     font: bolder 12vw 'Montserrat';
     text-align: center;
     margin: 0;
-    background: url("https://source.unsplash.com/collection/365720/1600x900") center;
+    background: url("https://source.unsplash.com/collection/365720/800x600") center;
     background-size: contain;
     margin: auto;
     margin-top: 100px;
@@ -88,4 +88,16 @@
     height: auto;
     width: 47%;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+.ReactModal__Overlay{
+    background-color: rgba(0, 0, 0, 0) !important;
+    transition: all 0.3s ease;
+}
+.ReactModal__Overlay--after-open{
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    transition: all 0.3s ease;
+}
+
+.ReactModal__Overlay {
+
 }

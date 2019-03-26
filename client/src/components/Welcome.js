@@ -37,7 +37,7 @@ class Welcome extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => this.setState({ modalIsOpen: true }), 3000);
+        setTimeout(() => this.setState({ modalIsOpen: true }), 4000);
     }
 
     openModal() {
@@ -77,7 +77,7 @@ class Welcome extends Component {
                                         contentLabel="Login/Signup"
                                     >
                                         <Login />
-                                        <div class="close-button" onClick={() => this.closeModal()}><span class="hidden">Close</span></div>
+                                        <div className="close-button" onClick={() => this.closeModal()}><span class="hidden">Close</span></div>
                                     </Modal>
                                     :
                                     <>
