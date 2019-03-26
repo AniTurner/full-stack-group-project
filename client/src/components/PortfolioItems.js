@@ -53,6 +53,7 @@ class PortfolioItems extends Component {
             <main>
                 <div id="portfolio-edit-screen" className="center-crop">
                     <h2>Portfolio</h2>
+                    <h3>Add a Portfolio Piece</h3>
                     <div className="add-form">
                         <AddEditPortfolioItemForm 
                             btnText="Save"
@@ -62,8 +63,10 @@ class PortfolioItems extends Component {
                             handleSubmit ={this.handleSubmit}
                         />
                     </div>
-
                     
+                    <hr /><br />
+
+                    <h3>Edit Portfolio</h3>
                     {/* DISPLAY DIV ONLY IF PORTFOLIO ITEMS EXIST */}
                     <div id="portfolio-list">
                     {/* Map over here */}
