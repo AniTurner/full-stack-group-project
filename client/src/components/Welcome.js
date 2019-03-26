@@ -8,22 +8,25 @@ import './transitionstyles.css'
 
 
 const customStyles = {
-    content : {
-      top                   : '50%',
-      left                  : '50%',
-      right                 : 'auto',
-      bottom                : 'auto',
-      marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)'
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        background: 'whitesmoke',
+        overflow: 'none',
+        height: '550px'
     }
-  };
+};
 
 // Modal.setAppElement(document.getElementById("modal")) //it is asking to put down (el) but el is not defined??
 
 
 class Welcome extends Component {
-    constructor(props){
-        super(props) 
+    constructor(props) {
+        super(props)
         this.state = {
             modalIsOpen: false,
 
@@ -36,25 +39,25 @@ class Welcome extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => this.setState({modalIsOpen: true}), 3000);
-     }
+        setTimeout(() => this.setState({ modalIsOpen: true }), 3000);
+    }
 
-     openModal() {
-        this.setState({modalIsOpen: true});
-      }
-     
-      afterOpenModal() {
+    openModal() {
+        this.setState({ modalIsOpen: true });
+    }
+
+    afterOpenModal() {
         // references are now sync'd and can be accessed.
         // this.subtitle.style.color = '#f00';
-      }
-     
-      closeModal = ()=>  {
-          console.log('close')
-        this.setState({modalIsOpen: false});
-      }
+    }
+
+    closeModal = () => {
+        console.log('close')
+        this.setState({ modalIsOpen: false });
+    }
 
     render() {
-        
+
         return (
             <div id="welcome-screen">
                 <div className="outer-div">
@@ -62,29 +65,33 @@ class Welcome extends Component {
                 </div>
                 <div className="z-content">
                     <div className="vertical-align-parent">
-                    <PageFade location={this.location}>
-                        <div  className="vertical-align-child">
-                            <button onClick={() => {this.openModal()}}>Login/Signup</button>
-                            {(this.state.modalIsOpen === true)
-                            ?
-                            <Modal
-                                ariaHideApp={false}
-                                isOpen={this.state.modalIsOpen}
-                                onAfterOpen={this.afterOpenModal}
-                                onRequestClose={this.closeModal}
-                                style={customStyles}
-                                contentLabel="Example Modal"
-                            >
-                            <Login />
-                            <button onClick={() => this.closeModal()}>Close</button>
-                            </Modal>
-                            :
-                            <h1>&lt;tt&gt;ché</h1>
-                            }
+                        <PageFade location={this.location}>
+                            <div className="vertical-align-child">
+
+                                <h1>&lt;tt&gt;ché</h1>
+
+                                <button onClick={() => { this.openModal() }}>Login / Signup</button>
+                                
+                                {(this.state.modalIsOpen === true)
+                                    ?
+                                    <Modal
+                                        ariaHideApp={false}
+                                        isOpen={this.state.modalIsOpen}
+                                        onAfterOpen={this.afterOpenModal}
+                                        onRequestClose={this.closeModal}
+                                        style={customStyles}
+                                        contentLabel="Example Modal"
+                                    >
+                                        <Login />
+                                        <div class="close-button" onClick={() => this.closeModal()}><span class="hidden">Close</span></div>
+                                    </Modal>
+                                    :
+                                    null
+                                }
 
                                 {/* <Login />  */}
-                        </div>
-                    </PageFade>
+                            </div>
+                        </PageFade>
                     </div>
                 </div>
             </div>

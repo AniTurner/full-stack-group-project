@@ -37,9 +37,8 @@ class AuthLogin extends Component {
 
     render(){
         return (
-            <form className="add-user-form" onSubmit={this.handleSubmit}>
+            <form className="login-form" onSubmit={this.handleSubmit}>
 
-                    
                     <input 
                         type="text"
                         onChange={this.handleChange} 
@@ -56,9 +55,8 @@ class AuthLogin extends Component {
                         placeholder="password"
                     />
 
-
-
                     <button>Login</button>
+                    
                     {this.state.errorMessage && <p style={{color: "red"}}>{this.state.errorMessage}</p>}
 
             </form>

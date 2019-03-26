@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import AuthLogin from '../components/AuthLogin.js'
 import Signup from '../components/Signup.js'
-import Toggle from '../shared/Toggle.js'
 
 class Login extends Component {
     constructor() {
@@ -21,11 +20,12 @@ class Login extends Component {
     render() {
        
         return (
-            <main>
-                <div id="login-screen" className="center-crop">
+            <div>
+                <div id="login-screen">
+                <div className="center-crop">
                     <h1>&lt;tt&gt;ché</h1>
-                    <span><button onClick={() => this.setUserChoice('login')}>Login</button></span>
-                    <span><button onClick={() => this.setUserChoice('signup')}>Sign Up</button></span>
+                    <span><button className="tab" onClick={() => this.setUserChoice('login')}>Login</button></span>
+                    <span><button className="tab" onClick={() => this.setUserChoice('signup')}>Sign Up</button></span>
                     {/* DISPLAY DIV ONLY IF USERS EXIST */}
                     {(this.state.userChoice === 'signup') 
                     ?
@@ -35,12 +35,11 @@ class Login extends Component {
                     :
                     <div>
                         <AuthLogin />
-
                     </div>
                     }                    
-                    
+                </div>    
                 </div>
-            </main>
+            </div>
         )
     }
 
