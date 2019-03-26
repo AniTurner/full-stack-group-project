@@ -9,7 +9,7 @@ const SelectUserForm = (props) => {
                 <option value="">Select user...</option>
                 {
                     props.allUsers.map((user) => 
-                        <option value={user._id} key={user._id}>{user.username}</option>
+                        <option value={user._id} key={user._id + Math.random()}>{user.username}</option>
                     )
                 }
             </select>

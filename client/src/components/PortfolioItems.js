@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PortfolioItem from './PortfolioItem.js'
 import AddEditPortfolioItemForm from './AddEditPortfolioItemForm.js'
 import { withListData } from '../context/BigDataProvider.js'
@@ -68,11 +68,11 @@ class PortfolioItems extends Component {
                     <div id="portfolio-list">
                     {/* Map over here */}
                     { this.props.allPortfolioItems.map(item => 
-                    <>
+                    <Fragment key={item._id}>
                             {(item.userId === this.props.user._id) 
                             ?
                                 <PortfolioItem 
-                                key={item._id} 
+                                
                                 {...item} 
                                 deletePortfolioItem ={this.props.deletePortfolioItem}
                                 updatePortfolioItem = {this.props.updatePortfolioItem}
@@ -80,7 +80,7 @@ class PortfolioItems extends Component {
                             : 
                             null
                             }
-                            </>
+                            </Fragment>
                         )
                     }
                     </div>
