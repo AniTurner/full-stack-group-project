@@ -27,9 +27,9 @@ class App extends Component {
     }
 
     componentDidMount = () => {
-        console.log(this.props.user._id)
-        this.props.getUsers()
-        this.props.getCategories()
+        // console.log(this.props.user._id)
+        this.props.token && this.props.getUsers()
+        this.props.token && this.props.getCategories()
     }
 
     render() {
