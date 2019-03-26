@@ -1,18 +1,13 @@
 import React,{Component} from 'react'
 import { withListData } from '../context/BigDataProvider.js'
 class UserCategory extends Component{
-    constructor(props){
-        super(props)
-    }
     
-    componentDidMount = () => {
 
-    }
     render(){
         console.log(this.props.allCategories)
         return(
             <main>
-                <div id="portfilio-category-screen" className="center-crop">
+                <div id="portfolio-category-screen" className="center-crop">
                     {
                         this.props.allCategories.map(category => 
                             (category._id === this.props.match.params._categoryid) ? 
@@ -28,7 +23,7 @@ class UserCategory extends Component{
                         this.props.allPortfolioItems.map(item => 
                             (item.categoryId === this.props.match.params._categoryid) ? 
                            <>
-                            <img src={item.imgUrl} width="300" alt={item.title}/>
+                            <img src={item.imgUrl} alt={item.title}/>
                            </>
                             :
                             null
