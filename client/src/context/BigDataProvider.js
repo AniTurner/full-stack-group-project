@@ -293,7 +293,7 @@ class BigDataProvider extends Component {
 
     // Get all users
     getUsers = () => {
-        axios.get("/user/v1").then(response => {
+        dataAxios.get("/api/user/v1").then(response => {
             this.setState({
                 allUsers: response.data
             })
@@ -302,7 +302,7 @@ class BigDataProvider extends Component {
 
     // Get current user
     getUser = (_id) => {
-        axios.get("/user/v1/" + _id).then(response => {
+        dataAxios.get("/api/user/v1/" + _id).then(response => {
             this.setState({
                 currentUser: response.data
             })
@@ -311,7 +311,7 @@ class BigDataProvider extends Component {
 
     // add new user
     addUser = (newUsername) => {
-        axios.post("/user/v1", newUsername).then(response => {
+        dataAxios.post("/api/user/v1", newUsername).then(response => {
             this.setState(prevState => ({
                 allUsers: [...prevState.allUsers, response.data]
 
@@ -321,7 +321,7 @@ class BigDataProvider extends Component {
 
     // delete user
     deleteUser = _id => {
-        axios.delete(`/user/v1/${_id}`).then(response => {
+        dataAxios.delete(`/api/user/v1/${_id}`).then(response => {
             this.setState(prevState => ({
                 allUsers: prevState.allUsers.filter(user => user._id !== _id)
             }))
