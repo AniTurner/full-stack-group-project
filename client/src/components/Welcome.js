@@ -77,7 +77,7 @@ class Welcome extends Component {
                                         contentLabel="Login/Signup"
                                     >
                                         <Login />
-                                        <div className="close-button" onClick={() => this.closeModal()}><span class="hidden">Close</span></div>
+                                        <div className="close-button" onClick={() => this.closeModal()}><span className="hidden">Close</span></div>
                                     </Modal>
                                     :
                                     <>
