@@ -11,9 +11,9 @@
 
 #### Screenshots:
 ### Admin System:
-<a href="https://attache-portfolio.herokuapp.com/" target="_blank"><img src="screenshot1.png"></a>
-<a href="https://attache-portfolio.herokuapp.com/" target="_blank"><img src="screenshot2.png"></a>
+<a href="https://attache-portfolio.herokuapp.com/" target="_blank"><img src="screenshot-1.png"></a>
+<a href="https://attache-portfolio.herokuapp.com/" target="_blank"><img src="screenshot-2.png"></a>
 
 ### Portfolio Site:
-<a href="https://attache-portfolio.herokuapp.com/" target="_blank"><img src="screenshot3.png"></a>
-<a href="https://attache-portfolio.herokuapp.com/" target="_blank"><img src="screenshot4.png"></a>
+<a href="https://attache-portfolio.herokuapp.com/" target="_blank"><img src="screenshot-3.png"></a>
+<a href="https://attache-portfolio.herokuapp.com/" target="_blank"><img src="screenshot-4.png"></a>
