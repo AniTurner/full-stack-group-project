@@ -22,7 +22,6 @@ app.use("/api", expressJwt({secret: process.env.SECRET}));
 // Middlewares for every request
 // Includes MONGODB_URI for Heroku deployment
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/attache", {useNewUrlParser: true}, () => {
-    console.log("[o] Connected to the DB")
 })
 
 // Routes
@@ -48,5 +47,4 @@ app.get("*", (req, res) => {
 
 // Server
 app.listen(PORT, () => {
-    console.log(`[+] Server is running on port ${PORT}` )
 })
