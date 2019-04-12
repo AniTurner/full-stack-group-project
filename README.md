@@ -9,6 +9,12 @@
 #### Completed according to assignment instructions: 
 - https://coursework.vschool.io/full-stack-group-project/
 
+#### Features:
+- Token-based user Authentication using bCrypt
+- Custom API with 5 custom Express routes and 4 Mongoose models
+- Full back-end using Express, ExpressJWT, Morgan, Mongoose
+- Full React front-end using Axios and React Router DOM
+
 <hr />
 
 ## Screenshots:
